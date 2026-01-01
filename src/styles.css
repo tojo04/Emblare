@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-primary: #0a0a0a;
-  --color-bg-secondary: #1a1a1a;
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #a0a0a0;
-  --color-accent-color: #6366f1;
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f3f4f6;
+  --color-text-primary: #111827;
+  --color-text-secondary: #4b5563;
+  --color-accent-color: #4f46e5;
   
   --font-main: Inter, system-ui, -apple-system, sans-serif;
   
-  --background-image-accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  --background-image-accent-gradient: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-reverse: float 8s ease-in-out infinite reverse;

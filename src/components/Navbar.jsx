@@ -23,17 +23,17 @@ const Navbar = () => {
 
   return (
     <motion.nav 
-      className="fixed top-0 left-0 w-full h-[80px] bg-bg-primary/80 backdrop-blur-md z-50 border-b border-white/5"
+      className="fixed top-0 left-0 w-full h-[80px] bg-bg-primary/80 backdrop-blur-md z-50 border-b border-black/5"
       initial="hidden"
       animate="visible"
       variants={navVariants}
     >
-      <div className="container flex justify-between items-center h-full">
+      <div className="container flex justify-between items-center h-full relative">
         <Link to="/" className="text-2xl font-bold tracking-tighter text-text-primary">
           Emblare<span className="text-accent-color">.</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-10 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <Link to="/" className={`text-base text-text-secondary transition-colors duration-300 flex items-center gap-1.5 cursor-pointer relative hover:text-text-primary ${location.pathname === '/' ? 'text-text-primary' : ''}`}>
             Home
           </Link>

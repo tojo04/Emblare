@@ -4,7 +4,7 @@ import { Linkedin, Instagram, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-bg-secondary pt-20 pb-10 border-t border-white/10">
+    <footer className="bg-bg-secondary pt-20 pb-10 border-t border-black/10">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
           {/* Brand Column */}
@@ -20,7 +20,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/company/emblare/?viewAsMember=true" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent-color hover:text-white transition-all duration-300"
+                className="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center hover:bg-accent-color hover:text-white transition-all duration-300"
               >
                 <Linkedin size={20} />
               </a>
@@ -28,7 +28,7 @@ const Footer = () => {
                 href="https://www.instagram.com/emblare_?igsh=bWN1anpoYXZsOHV3&utm_source=qr" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent-color hover:text-white transition-all duration-300"
+                className="w-10 h-10 rounded-full bg-black/5 flex items-center justify-center hover:bg-accent-color hover:text-white transition-all duration-300"
               >
                 <Instagram size={20} />
               </a>
