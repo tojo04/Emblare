@@ -1,78 +1,113 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
 const Contact = () => {
   return (
-    <div className="pt-[140px] pb-[100px] min-h-screen">
-      <div className="container">
-        <motion.div 
-          className="text-center mb-[60px]"
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <div className="relative h-[400px] flex items-center justify-center overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1600&h=400&fit=crop)',
+            filter: 'brightness(0.6)'
+          }}
+        ></div>
+        <motion.h1 
+          className="relative z-10 text-7xl md:text-8xl font-bold text-white"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl mb-4 font-bold">Get in Touch</h1>
-          <p className="text-text-secondary text-lg">Have a project in mind? We'd love to hear from you.</p>
-        </motion.div>
+          Contact
+        </motion.h1>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-[60px]">
+      {/* Spacing */}
+      <div className="h-[150px]"></div>
+
+      {/* Form and Map Section */}
+      <div className="max-w-[1600px] mx-auto pb-20">
+        <div className="relative">
+          {/* Contact Form - Full Width */}
           <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-[#D4FF00] px-8 md:px-12 lg:px-20 py-12 md:py-16 lg:py-24 w-full min-h-[850px] flex flex-col justify-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="bg-accent-gradient p-10 rounded-3xl h-full text-white">
-              <h3 className="text-2xl mb-3 font-bold">Contact Information</h3>
-              <p className="opacity-80 mb-10">Fill out the form or reach us directly.</p>
-              
-              <div className="flex items-center gap-4 mb-6 text-base">
-                <Mail className="opacity-80" />
-                <span>hello@emblare.com</span>
-              </div>
-              <div className="flex items-center gap-4 mb-6 text-base">
-                <MapPin className="opacity-80" />
-                <span>Delhi NCR, India</span>
-              </div>
+            <div className="max-w-[600px]">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-6 leading-tight">
+                Have Any Project on Your Mind?
+              </h1>
+              <p className="text-black text-lg mb-16">
+                Great! We're excited to hear from you and let's start something
+              </p>
 
-              <div className="social-links">
-                {/* Social icons would go here */}
-              </div>
+              <form className="space-y-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <input 
+                      type="text" 
+                      placeholder="Full name*" 
+                      className="w-full px-0 py-4 bg-transparent border-b-2 border-black text-black text-xl font-semibold placeholder-black focus:outline-none focus:border-black/70 transition-colors"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input 
+                      type="email" 
+                      placeholder="Email address*" 
+                      className="w-full px-0 py-4 bg-transparent border-b-2 border-black text-black text-xl font-semibold placeholder-black focus:outline-none focus:border-black/70 transition-colors"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <input 
+                    type="url" 
+                    placeholder="Website link" 
+                    className="w-full px-0 py-4 bg-transparent border-b-2 border-black text-black text-xl font-semibold placeholder-black focus:outline-none focus:border-black/70 transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <textarea 
+                    rows="5" 
+                    placeholder="How Can We Help You*" 
+                    className="w-full px-0 py-4 bg-transparent border-b-2 border-black text-black text-xl font-semibold placeholder-black focus:outline-none focus:border-black/70 transition-colors resize-none"
+                    required
+                  ></textarea>
+                </div>
+
+                <button 
+                  type="submit" 
+                  className="bg-black text-[#D4FF00] px-10 py-5 font-bold text-sm uppercase tracking-wider hover:bg-black/90 transition-colors mt-8"
+                >
+                  SEND MESSAGE
+                </button>
+              </form>
             </div>
           </motion.div>
 
+          {/* Map Overlay - Revealing from right to left */}
           <motion.div 
-            className="bg-bg-secondary p-10 rounded-3xl border border-white/5"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            className="absolute -top-32 right-0 w-full lg:w-[45%] h-[600px] lg:h-[850px] shadow-2xl"
+            initial={{ clipPath: "inset(0 0 0 100%)", opacity: 0 }}
+            animate={{ clipPath: "inset(0 0 0 0)", opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
           >
-            <form className="contact-form">
-              <div className="mb-6">
-                <label className="block mb-2 text-text-secondary text-sm font-medium">Name</label>
-                <input type="text" placeholder="Your Name" className="w-full p-3.5 bg-white/3 border border-white/10 rounded-xl text-text-primary font-main text-base transition-all duration-300 focus:outline-none focus:border-accent-color focus:bg-white/5" />
-              </div>
-              <div className="mb-6">
-                <label className="block mb-2 text-text-secondary text-sm font-medium">Email</label>
-                <input type="email" placeholder="your@email.com" className="w-full p-3.5 bg-white/3 border border-white/10 rounded-xl text-text-primary font-main text-base transition-all duration-300 focus:outline-none focus:border-accent-color focus:bg-white/5" />
-              </div>
-              <div className="mb-6">
-                <label className="block mb-2 text-text-secondary text-sm font-medium">Subject</label>
-                <select className="w-full p-3.5 bg-white/3 border border-white/10 rounded-xl text-text-primary font-main text-base transition-all duration-300 focus:outline-none focus:border-accent-color focus:bg-white/5">
-                  <option>General Inquiry</option>
-                  <option>Web Design</option>
-                  <option>Marketing</option>
-                  <option>SEO</option>
-                </select>
-              </div>
-              <div className="mb-6">
-                <label className="block mb-2 text-text-secondary text-sm font-medium">Message</label>
-                <textarea rows="5" placeholder="Tell us about your project..." className="w-full p-3.5 bg-white/3 border border-white/10 rounded-xl text-text-primary font-main text-base transition-all duration-300 focus:outline-none focus:border-accent-color focus:bg-white/5"></textarea>
-              </div>
-              <button type="submit" className="btn btn-primary w-full flex justify-center items-center">
-                Send Message <Send size={18} style={{ marginLeft: '8px' }} />
-              </button>
-            </form>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448193.95073802597!2d76.76357449999999!3d28.644800000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x37205b715389640!2sDelhi%2C%20India!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-full"
+            ></iframe>
           </motion.div>
         </div>
       </div>
