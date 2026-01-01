@@ -23,7 +23,7 @@ const Navbar = () => {
 
   return (
     <motion.nav 
-      className="fixed top-0 left-0 w-full h-[80px] bg-bg-primary/80 backdrop-blur-md z-50 border-b border-white/5"
+      className="fixed top-0 left-0 w-full h-[80px] bg-bg-primary/80 backdrop-blur-md z-50 border-b border-black/5"
       initial="hidden"
       animate="visible"
       variants={navVariants}

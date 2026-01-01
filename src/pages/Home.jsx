@@ -42,83 +42,65 @@ const Home = () => {
     'Dedicated Client Success Team'
   ];
 
+  const clients = [
+    'Apollo Hospitals', 
+    '360 Cloud', 
+    'Flipkart', 
+    'Indeed', 
+    'Pushp Brand Spices', 
+    'Mahi', 
+    'Zomato', 
+    'Tommy Hilfiger'
+  ];
+
   return (
     <div className="pt-[80px]">
       {/* Hero Section */}
-      <section className="min-h-[calc(100vh-80px)] flex items-center relative overflow-hidden">
-        <div className="absolute -top-[20%] -right-[10%] w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(99,102,241,0.15)_0%,rgba(0,0,0,0)_70%)] rounded-full -z-10 blur-[60px]"></div>
-        <div className="container grid grid-cols-1 md:grid-cols-2 gap-[60px] items-center">
+      <section className="min-h-[90vh] flex flex-col justify-center items-center relative overflow-hidden">
+        {/* Background Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#f5f5f5_1px,transparent_1px)] bg-[size:4rem_100%] -z-20"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#ffffff_100%)] -z-10"></div>
+        
+        <div className="container text-center z-10 pt-20 pb-20">
           <motion.div 
-            className="max-w-[600px] mx-auto md:mx-0 text-center md:text-left"
             initial="hidden"
             animate="visible"
             variants={containerVariants}
+            className="max-w-5xl mx-auto"
           >
-            
-            <motion.h1 variants={itemVariants} className="text-5xl md:text-[64px] leading-[1.1] font-extrabold mb-6 tracking-tighter">
-              We have <span className="gradient-text">rare ideas</span> and <span className="gradient-text">real results</span>
+            <motion.h1 variants={itemVariants} className="text-6xl md:text-[90px] leading-[1] font-extrabold mb-16 tracking-tighter text-gray-900">
+              We have <span className="gradient-text">rare ideas</span><br />and <span className="gradient-text">real results</span>.
             </motion.h1>
-            <motion.p variants={itemVariants} className="text-lg text-text-secondary mb-6 leading-relaxed">
-              At Emblare, we believe every brand deserves to stand out as rare. Born from the words “Emblem” and “Rare”, our name reflects our mission: to create distinct identities, innovative strategies, and measurable growth for businesses that aspire to lead.
-            </motion.p>
-            <motion.p variants={itemVariants} className="text-base text-text-secondary mb-10 leading-relaxed opacity-80">
-              We are more than an agency—we’re your partners in strategy, design, and digital transformation. From concept to execution, we deliver results that are both meaningful and lasting.
-            </motion.p>
-            <motion.div variants={itemVariants} className="flex gap-5 justify-center md:justify-start">
-              <Link to="/contact" className="btn btn-primary">
+            
+            <motion.div variants={itemVariants} className="mb-20">
+               <p className="text-text-secondary text-sm font-semibold uppercase tracking-widest mb-10">Trusted by designers from:</p>
+               
+               <div className="relative w-full overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)' }}>
+                  <div className="flex whitespace-nowrap animate-marquee items-center">
+                    {[...Array(4)].map((_, setIndex) => (
+                      <div key={setIndex} className="flex items-center gap-20 mx-10">
+                        {clients.map((client, i) => (
+                          <span key={i} className="text-2xl md:text-3xl font-bold text-gray-400 hover:text-gray-900 transition-colors cursor-default select-none">
+                            {client}
+                          </span>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+               </div>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="flex gap-5 justify-center">
+              <Link to="/contact" className="btn btn-primary px-8 py-4 text-lg">
                 Start Your Project
               </Link>
-              <Link to="/services/web-design" className="px-6 py-3 rounded-full font-semibold cursor-pointer transition-all duration-300 bg-transparent border border-white/20 text-text-primary hover:border-text-primary hover:bg-white/5">
+              <Link to="/services/web-design" className="px-8 py-4 rounded-full font-semibold cursor-pointer transition-all duration-300 bg-white border border-gray-200 text-text-primary hover:border-text-primary hover:bg-gray-50 text-lg shadow-sm">
                 Explore Services
               </Link>
             </motion.div>
           </motion.div>
-          
-          <motion.div 
-            className="relative h-[400px] md:h-[500px] flex justify-center items-center"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <div className="absolute rounded-full blur-[40px] opacity-60 w-[300px] h-[300px] bg-[#6366f1] top-[50px] right-[50px] animate-float"></div>
-            <div className="absolute rounded-full blur-[40px] opacity-60 w-[250px] h-[250px] bg-[#a855f7] bottom-[50px] left-[50px] animate-float-reverse"></div>
-            <div className="relative w-[380px] h-[240px] bg-white/3 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl -rotate-[5deg] transition-transform duration-300 hover:rotate-0 hover:scale-105">
-              <div className="flex gap-2 mb-6">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <div className="card-content">
-                <div className="h-3 bg-white/10 rounded-full mb-3 w-3/4"></div>
-                <div className="h-3 bg-white/10 rounded-full mb-3 w-1/2"></div>
-                <div className="h-20 bg-white/5 rounded-xl mb-4"></div>
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-white/10"></div>
-                  <div className="h-3 bg-white/10 rounded-full mb-3 w-3/5"></div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
-
-      {/* Marquee Section */}
-      <div className="py-10 border-y border-white/5 bg-bg-secondary/30 overflow-hidden">
-        <div className="flex whitespace-nowrap animate-marquee">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="flex items-center gap-12 mx-6">
-              <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white/80 to-white/40">Strategy that drives growth</span>
-              <span className="w-2 h-2 rounded-full bg-accent-color"></span>
-              <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white/80 to-white/40">Design that defines distinction</span>
-              <span className="w-2 h-2 rounded-full bg-accent-color"></span>
-              <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white/80 to-white/40">Marketing that builds trust</span>
-              <span className="w-2 h-2 rounded-full bg-accent-color"></span>
-              <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white/80 to-white/40">Technology that empowers brands</span>
-              <span className="w-2 h-2 rounded-full bg-accent-color"></span>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* Services Preview */}
       <section className="section">
@@ -138,7 +120,7 @@ const Home = () => {
             {services.map((service, index) => (
               <motion.div 
                 key={index}
-                className="bg-bg-secondary p-10 rounded-3xl border border-white/5 transition-all duration-300 hover:-translate-y-2.5 hover:border-accent-color hover:shadow-2xl"
+                className="bg-bg-secondary p-10 rounded-3xl border border-black/5 transition-all duration-300 hover:-translate-y-2.5 hover:border-accent-color hover:shadow-2xl"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -186,7 +168,7 @@ const Home = () => {
               viewport={{ once: true }}
             >
               {stats.map((stat, index) => (
-                <div key={index} className="bg-bg-secondary p-6 rounded-2xl border border-white/5 text-center hover:border-accent-color/50 transition-colors">
+                <div key={index} className="bg-bg-secondary p-6 rounded-2xl border border-black/5 text-center hover:border-accent-color/50 transition-colors">
                   <h3 className="text-4xl font-bold text-accent-color mb-2">{stat.value}</h3>
                   <p className="text-sm text-text-secondary">{stat.label}</p>
                 </div>
@@ -247,7 +229,7 @@ const Home = () => {
       <section className="section">
         <div className="container">
           <motion.div 
-            className="bg-bg-secondary border border-white/10 rounded-[30px] p-10 md:p-20 text-center relative overflow-hidden"
+            className="bg-bg-secondary border border-black/10 rounded-[30px] p-10 md:p-20 text-center relative overflow-hidden"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}

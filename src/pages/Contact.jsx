@@ -42,7 +42,7 @@ const Contact = () => {
           </motion.div>
 
           <motion.div 
-            className="bg-bg-secondary p-10 rounded-3xl border border-white/5"
+            className="bg-bg-secondary p-10 rounded-3xl border border-black/5"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -50,15 +50,15 @@ const Contact = () => {
             <form className="contact-form">
               <div className="mb-6">
                 <label className="block mb-2 text-text-secondary text-sm font-medium">Name</label>
-                <input type="text" placeholder="Your Name" className="w-full p-3.5 bg-white/3 border border-white/10 rounded-xl text-text-primary font-main text-base transition-all duration-300 focus:outline-none focus:border-accent-color focus:bg-white/5" />
+                <input type="text" placeholder="Your Name" className="w-full p-3.5 bg-white border border-black/10 rounded-xl text-text-primary font-main text-base transition-all duration-300 focus:outline-none focus:border-accent-color focus:bg-white" />
               </div>
               <div className="mb-6">
                 <label className="block mb-2 text-text-secondary text-sm font-medium">Email</label>
-                <input type="email" placeholder="your@email.com" className="w-full p-3.5 bg-white/3 border border-white/10 rounded-xl text-text-primary font-main text-base transition-all duration-300 focus:outline-none focus:border-accent-color focus:bg-white/5" />
+                <input type="email" placeholder="your@email.com" className="w-full p-3.5 bg-white border border-black/10 rounded-xl text-text-primary font-main text-base transition-all duration-300 focus:outline-none focus:border-accent-color focus:bg-white" />
               </div>
               <div className="mb-6">
                 <label className="block mb-2 text-text-secondary text-sm font-medium">Subject</label>
-                <select className="w-full p-3.5 bg-white/3 border border-white/10 rounded-xl text-text-primary font-main text-base transition-all duration-300 focus:outline-none focus:border-accent-color focus:bg-white/5">
+                <select className="w-full p-3.5 bg-white border border-black/10 rounded-xl text-text-primary font-main text-base transition-all duration-300 focus:outline-none focus:border-accent-color focus:bg-white">
                   <option>General Inquiry</option>
                   <option>Web Design</option>
                   <option>Marketing</option>
@@ -67,7 +67,7 @@ const Contact = () => {
               </div>
               <div className="mb-6">
                 <label className="block mb-2 text-text-secondary text-sm font-medium">Message</label>
-                <textarea rows="5" placeholder="Tell us about your project..." className="w-full p-3.5 bg-white/3 border border-white/10 rounded-xl text-text-primary font-main text-base transition-all duration-300 focus:outline-none focus:border-accent-color focus:bg-white/5"></textarea>
+                <textarea rows="5" placeholder="Tell us about your project..." className="w-full p-3.5 bg-white border border-black/10 rounded-xl text-text-primary font-main text-base transition-all duration-300 focus:outline-none focus:border-accent-color focus:bg-white"></textarea>
               </div>
               <button type="submit" className="btn btn-primary w-full flex justify-center items-center">
                 Send Message <Send size={18} style={{ marginLeft: '8px' }} />
