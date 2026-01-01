@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #0a0a0a;
+  --color-bg-secondary: #1a1a1a;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a0a0;
+  --color-accent-color: #6366f1;
+  
+  --font-main: Inter, system-ui, -apple-system, sans-serif;
+  
+  --background-image-accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-reverse: float 8s ease-in-out infinite reverse;
+  --animate-marquee: marquee 25s linear infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(0, -20px); }
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-bg-primary text-text-primary font-main overflow-x-hidden antialiased;
+  }
+  
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-bg-primary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-bg-secondary rounded;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent-color;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-[1200px] mx-auto px-5;
+  }
+
+  .gradient-text {
+    @apply bg-accent-gradient bg-clip-text text-transparent;
+  }
+
+  .btn {
+    @apply px-6 py-3 rounded-full font-semibold cursor-pointer transition-all duration-300 border-none outline-none;
+  }
+
+  .btn-primary {
+    @apply bg-accent-gradient text-white shadow-[0_4px_15px_rgba(99,102,241,0.3)] hover:-translate-y-0.5 hover:shadow-[0_8px_25px_rgba(99,102,241,0.4)];
+  }
+
+  .section {
+    @apply py-[100px];
+  }
+}
