@@ -108,15 +108,50 @@ const Home = () => {
                </div>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="flex gap-5 justify-center">
-              <Link to="/contact" className="btn btn-primary px-8 py-4 text-lg">
-                Start Your Project
-              </Link>
-              <Link to="/services/web-design" className="px-8 py-4 rounded-full font-semibold cursor-pointer transition-all duration-300 bg-white border border-gray-200 text-text-primary hover:border-text-primary hover:bg-gray-50 text-lg shadow-sm">
-                Explore Services
+            <motion.div variants={itemVariants} className="flex justify-center">
+              <Link to="/contact" className="btn btn-primary px-12 py-5 text-xl font-bold tracking-wide shadow-lg hover:shadow-xl transform transition-all duration-300">
+                Let's Create Something Rare
               </Link>
             </motion.div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Mission Section */}
+      <section className="section bg-white">
+        <div className="container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative rounded-3xl overflow-hidden shadow-2xl"
+            >
+              <img 
+                src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80" 
+                alt="Team collaboration" 
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-8 text-gray-900">
+                At Emblare, <span className="text-accent-color">we believe every brand deserves to stand out as rare.</span>
+              </h2>
+              <p className="text-text-secondary text-lg mb-6 leading-relaxed">
+                Born from the words "Emblem" and "Rare", our name reflects our mission: to create distinct identities, innovative strategies, and measurable growth for businesses that aspire to lead.
+              </p>
+              <p className="text-text-secondary text-lg leading-relaxed">
+                We are more than an agency—we're your partners in strategy, design, and digital transformation. From concept to execution, we deliver results that are both meaningful and lasting.
+              </p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -134,11 +169,11 @@ const Home = () => {
             <p className="text-text-secondary text-lg">Comprehensive solutions for the modern digital landscape.</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
+          <div className="flex flex-wrap justify-center gap-[30px]">
             {services.map((service, index) => (
               <motion.div 
                 key={index}
-                className="bg-bg-secondary p-10 rounded-3xl border border-black/5 transition-all duration-300 hover:-translate-y-2.5 hover:border-accent-color hover:shadow-2xl"
+                className="w-full md:w-[calc(50%-15px)] lg:w-[calc(33.333%-20px)] bg-bg-secondary p-10 rounded-3xl border border-black/5 transition-all duration-300 hover:-translate-y-2.5 hover:border-accent-color hover:shadow-2xl"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
