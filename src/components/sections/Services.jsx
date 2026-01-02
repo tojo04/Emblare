@@ -60,7 +60,7 @@ const Services = () => {
           {services.map((service, index) => (
             <motion.div
               key={index}
-              className="group bg-white p-8 rounded-2xl border-2 border-gray-100 hover:border-theme transition-all duration-300 hover:shadow-2xl"
+              className="group bg-white p-8 rounded-none border-2 border-gray-100 hover:border-theme transition-all duration-300 hover:shadow-2xl"
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}

@@ -26,7 +26,7 @@ const Preloader = () => {
         {[0, 1, 2, 3].map((i) => (
           <motion.span
             key={i}
-            className="w-3 h-3 bg-theme rounded-full"
+            className="w-3 h-3 bg-theme rounded-none"
             animate={{
               scale: [1, 1.5, 1],
               opacity: [0.5, 1, 0.5],

@@ -42,7 +42,7 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-bg-secondary rounded;
+    @apply bg-bg-secondary rounded-none;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -60,7 +60,7 @@
   }
 
   .btn {
-    @apply px-6 py-3 rounded-full font-semibold cursor-pointer transition-all duration-300 border-none outline-none;
+    @apply px-6 py-3 rounded-none font-semibold cursor-pointer transition-all duration-300 border-none outline-none;
   }
 
   .btn-primary {

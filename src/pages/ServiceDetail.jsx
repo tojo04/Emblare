@@ -84,7 +84,7 @@ const ServiceDetail = () => {
           <img
             src={service.heroImage}
             alt={service.title}
-            className="w-full h-auto rounded-2xl shadow-2xl"
+            className="w-full h-auto rounded-none shadow-2xl"
           />
         </motion.div>
 
@@ -108,7 +108,7 @@ const ServiceDetail = () => {
           </motion.p>
 
           <motion.div
-            className="relative h-96 rounded-2xl overflow-hidden mb-12"
+            className="relative h-96 rounded-none overflow-hidden mb-12"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={inView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -120,7 +120,7 @@ const ServiceDetail = () => {
             />
             <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
               <motion.button
-                className="w-20 h-20 bg-theme rounded-full flex items-center justify-center text-title text-2xl hover:scale-110 transition-transform"
+                className="w-20 h-20 bg-theme rounded-none flex items-center justify-center text-title text-2xl hover:scale-110 transition-transform"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -138,7 +138,7 @@ const ServiceDetail = () => {
             {service.details.map((detail, index) => (
               <motion.div
                 key={index}
-                className="p-6 bg-gray-50 rounded-lg border-l-4 border-theme"
+                className="p-6 bg-gray-50 rounded-none border-l-4 border-theme"
                 initial={{ opacity: 0, x: -20 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}

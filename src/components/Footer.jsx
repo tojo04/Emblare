@@ -18,7 +18,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/company/emblare/?viewAsMember=true" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-accent-color hover:text-black transition-all duration-300"
+                className="w-10 h-10 rounded-none bg-white/10 flex items-center justify-center text-white hover:bg-accent-color hover:text-black transition-all duration-300"
               >
                 <Linkedin size={18} />
               </a>
@@ -26,7 +26,7 @@ const Footer = () => {
                 href="https://www.instagram.com/emblare_?igsh=bWN1anpoYXZsOHV3&utm_source=qr" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-accent-color hover:text-black transition-all duration-300"
+                className="w-10 h-10 rounded-none bg-white/10 flex items-center justify-center text-white hover:bg-accent-color hover:text-black transition-all duration-300"
               >
                 <Instagram size={18} />
               </a>

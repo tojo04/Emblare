@@ -46,7 +46,7 @@ const CTA = () => {
           >
             <Link
               to="/contact"
-              className="inline-block px-12 py-6 bg-theme text-title font-bold rounded-full text-lg hover:shadow-2xl transition-all"
+              className="inline-block px-12 py-6 bg-theme text-title font-bold rounded-none text-lg hover:shadow-2xl transition-all"
             >
               LET'S TALK
             </Link>

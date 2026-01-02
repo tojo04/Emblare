@@ -62,7 +62,7 @@ const Hero = () => {
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-20 right-20 w-96 h-96 bg-theme/10 rounded-full blur-3xl"
+          className="absolute top-20 right-20 w-96 h-96 bg-theme/10 rounded-none blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             x: [0, 50, 0],
@@ -75,7 +75,7 @@ const Hero = () => {
           }}
         />
         <motion.div
-          className="absolute bottom-20 left-20 w-96 h-96 bg-theme/5 rounded-full blur-3xl"
+          className="absolute bottom-20 left-20 w-96 h-96 bg-theme/5 rounded-none blur-3xl"
           animate={{
             scale: [1, 1.3, 1],
             x: [0, -30, 0],
@@ -156,7 +156,7 @@ const Hero = () => {
             >
               <Link
                 to="/contact"
-                className="inline-block px-8 py-4 bg-theme text-title font-bold rounded-full hover:scale-105 transition-transform shadow-lg hover:shadow-xl"
+                className="inline-block px-8 py-4 bg-theme text-title font-bold rounded-none hover:scale-105 transition-transform shadow-lg hover:shadow-xl"
               >
                 Let's Create Something Rare
               </Link>
@@ -171,9 +171,9 @@ const Hero = () => {
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 1.5, repeat: Infinity }}
       >
-        <div className="w-6 h-10 border-2 border-title rounded-full flex items-start justify-center p-2">
+        <div className="w-6 h-10 border-2 border-title rounded-none flex items-start justify-center p-2">
           <motion.div
-            className="w-1 h-3 bg-title rounded-full"
+            className="w-1 h-3 bg-title rounded-none"
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
           />

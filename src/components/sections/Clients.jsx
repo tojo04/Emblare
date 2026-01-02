@@ -25,7 +25,7 @@ const Clients = () => {
           {clients.map((client, index) => (
             <motion.div
               key={index}
-              className="bg-white p-8 rounded-lg border-2 border-title/10 hover:border-theme transition-all duration-300 flex items-center justify-center h-32"
+              className="bg-white p-8 rounded-none border-2 border-title/10 hover:border-theme transition-all duration-300 flex items-center justify-center h-32"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}

@@ -70,7 +70,7 @@ const WhyUs = () => {
             {items.map((item, index) => (
               <motion.div
                 key={index}
-                className="bg-white rounded-lg overflow-hidden shadow-md"
+                className="bg-white rounded-none overflow-hidden shadow-md"
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}

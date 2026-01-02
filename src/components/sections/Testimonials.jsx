@@ -41,7 +41,7 @@ const Testimonials = () => {
         </h2>
 
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-[30px] p-10 md:p-16 shadow-2xl min-h-[350px] flex flex-col justify-center relative overflow-hidden">
+          <div className="bg-white rounded-none p-10 md:p-16 shadow-2xl min-h-[350px] flex flex-col justify-center relative overflow-hidden">
             <Quote className="text-accent-color w-12 h-12 mb-8 flex-shrink-0" />
             
             <AnimatePresence mode="wait">
@@ -71,7 +71,7 @@ const Testimonials = () => {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`h-3 rounded-full transition-all duration-300 ${
+                className={`h-3 rounded-none transition-all duration-300 ${
                   index === currentIndex ? 'w-10 bg-black' : 'w-3 bg-black/20 hover:bg-black/40'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}

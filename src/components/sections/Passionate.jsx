@@ -50,7 +50,7 @@ const Passionate = () => {
             <motion.img
               src="/assets/img/passionate.png"
               alt="Passionate"
-              className="w-full h-auto rounded-2xl shadow-2xl"
+              className="w-full h-auto rounded-none shadow-2xl"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             />

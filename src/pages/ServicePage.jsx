@@ -190,7 +190,7 @@ const ServicePage = () => {
                      return (
                         <motion.div 
                            key={i} 
-                           className="relative overflow-hidden rounded-[30px] bg-gray-50 h-[350px] flex flex-col justify-end group cursor-pointer"
+                           className="relative overflow-hidden rounded-none bg-gray-50 h-[350px] flex flex-col justify-end group cursor-pointer"
                            style={{ '--service-color': service.color }}
                            initial={{ opacity: 0, y: 20 }}
                            whileInView={{ opacity: 1, y: 0 }}
@@ -211,7 +211,7 @@ const ServicePage = () => {
 
                            {/* Content Overlay */}
                            <div className="relative z-10 p-8 transform transition-transform duration-500 group-hover:-translate-y-2">
-                              <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white mb-4 border border-white/20 group-hover:bg-[var(--service-color)] group-hover:border-[var(--service-color)] transition-colors duration-300">
+                              <div className="w-12 h-12 rounded-none bg-white/10 backdrop-blur-md flex items-center justify-center text-white mb-4 border border-white/20 group-hover:bg-[var(--service-color)] group-hover:border-[var(--service-color)] transition-colors duration-300">
                                  <Icon size={24} />
                               </div>
                               
@@ -227,7 +227,7 @@ const ServicePage = () => {
                            </div>
 
                            {/* Hover Border */}
-                           <div className="absolute inset-0 border-2 border-transparent group-hover:border-[var(--service-color)] rounded-[30px] transition-colors duration-500 pointer-events-none z-20"></div>
+                           <div className="absolute inset-0 border-2 border-transparent group-hover:border-[var(--service-color)] rounded-none transition-colors duration-500 pointer-events-none z-20"></div>
                         </motion.div>
                      );
                   })}
@@ -235,7 +235,7 @@ const ServicePage = () => {
 
                {/* Stats Row */}
                {service.stats && (
-                  <div className="bg-black text-white p-12 rounded-[40px] grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                  <div className="bg-black text-white p-12 rounded-none grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
                      {service.stats.map((stat, i) => (
                         <div key={i} className="text-center">
                            <div className="text-4xl font-bold text-[var(--service-color)] mb-2" style={{ '--service-color': service.color }}>{stat.value}</div>
@@ -246,7 +246,7 @@ const ServicePage = () => {
                )}
                
                <div className="mt-8">
-                  <Link to="/contact" className="inline-flex items-center gap-3 bg-black text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-[var(--service-color)] hover:text-black transition-all duration-300 group" style={{ '--service-color': service.color }}>
+                  <Link to="/contact" className="inline-flex items-center gap-3 bg-black text-white px-10 py-5 rounded-none font-bold text-xl hover:bg-[var(--service-color)] hover:text-black transition-all duration-300 group" style={{ '--service-color': service.color }}>
                      Start Your Project
                      <ArrowRight className="group-hover:translate-x-1 transition-transform" />
                   </Link>

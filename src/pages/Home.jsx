@@ -86,23 +86,33 @@ const Home = () => {
             className="max-w-5xl mx-auto"
           >
             <motion.h1 variants={itemVariants} className="text-6xl md:text-[90px] leading-[1] font-extrabold mb-16 tracking-tighter text-gray-900">
-              We have <span className="gradient-text">rare ideas</span><br />and <span className="gradient-text">real results</span>.
+              We have <span className="gradient-text">rare ideas</span><br />and <span className="gradient-text">real results</span>
             </motion.h1>
             
             <motion.div variants={itemVariants} className="mb-20">
-               <p className="text-text-secondary text-sm font-semibold uppercase tracking-widest mb-10">Trusted by designers from:</p>
+               <p className="text-text-secondary text-sm font-semibold uppercase tracking-widest mb-10">Trusted by :</p>
                
                <div className="relative w-full overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)' }}>
-                  <div className="flex whitespace-nowrap animate-marquee items-center">
-                    {[...Array(4)].map((_, setIndex) => (
-                      <div key={setIndex} className="flex items-center gap-12 md:gap-24 mx-10 shrink-0">
-                        {clients.map((client, i) => (
-                          <img 
-                            key={i} 
-                            src={client.logo} 
-                            alt={client.name} 
-                            className="h-8 md:h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 shrink-0" 
-                          />
+                  <div className="flex">
+                    {[0, 1].map((i) => (
+                      <div key={i} className="flex shrink-0 animate-marquee items-center whitespace-nowrap">
+                        {[...Array(2)].map((_, setIndex) => (
+                          <div key={setIndex} className="flex items-center gap-12 md:gap-24 mx-10 shrink-0">
+                            {clients.map((client, i) => (
+                              <img 
+                                key={i} 
+                                src={client.logo} 
+                                alt={client.name} 
+                                className={`w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 shrink-0 ${
+                                  client.name === 'Apollo Hospitals'
+                                    ? 'h-14 md:h-24'
+                                    : client.name === 'Mahi' || client.name === 'Flipkart'
+                                      ? 'h-12 md:h-20'
+                                      : 'h-8 md:h-12'
+                                }`}
+                              />
+                            ))}
+                          </div>
                         ))}
                       </div>
                     ))}
@@ -128,7 +138,7 @@ const Home = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative rounded-3xl overflow-hidden shadow-2xl"
+              className="relative rounded-none overflow-hidden shadow-2xl"
             >
               <img 
                 src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=800&q=80" 
@@ -175,7 +185,7 @@ const Home = () => {
             {services.map((service, index) => (
               <motion.div 
                 key={index}
-                className="w-full md:w-[calc(50%-15px)] lg:w-[calc(33.333%-20px)] bg-bg-secondary p-10 rounded-3xl border border-black/5 transition-all duration-300 hover:-translate-y-2.5 hover:border-accent-color hover:shadow-2xl"
+                className="w-full md:w-[calc(50%-15px)] lg:w-[calc(33.333%-20px)] bg-bg-secondary p-10 rounded-none border border-black/5 transition-all duration-300 hover:-translate-y-2.5 hover:border-accent-color hover:shadow-2xl"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -186,7 +196,7 @@ const Home = () => {
                 </div>
                 <h3 className="text-2xl mb-3 font-bold">{service.title}</h3>
                 <p className="text-text-secondary mb-6 leading-relaxed">{service.desc}</p>
-                <Link to={service.link} className="flex items-center gap-2 text-accent-color font-semibold text-sm">
+                <Link to={service.link} className="flex items-center gap-2 text-lime-600 font-semibold text-sm hover:text-lime-700 transition-colors">
                   VIEW DETAILS <ArrowRight size={16} />
                 </Link>
               </motion.div>
@@ -208,7 +218,7 @@ const Home = () => {
           >
             <span className="text-accent-color font-bold tracking-wider uppercase text-sm mb-4 block">The Emblare Difference</span>
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9]">
-              Why We Are <span className="text-accent-color">Rare.</span>
+              Why We Are <span className="text-accent-color">Rare</span>
             </h2>
             <p className="text-gray-400 text-xl md:text-2xl mt-8 max-w-2xl leading-relaxed">
               Most agencies follow a playbook. We rewrite it. Here is how we build brands that dominate.
@@ -230,11 +240,8 @@ const Home = () => {
                   transition={{ duration: 0.8 }}
                   viewport={{ once: false }}
                 >
-                  <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-8 backdrop-blur-sm border border-white/10">
-                    <Target size={40} className="text-accent-color" />
-                  </div>
                   <h3 className="text-6xl md:text-8xl font-black text-white mb-6 tracking-tighter">
-                    We Don't <br/><span className="text-gray-700">Guess.</span>
+                    We Don't <br/><span className="text-gray-700">Guess</span>
                   </h3>
                   <p className="text-gray-400 text-xl md:text-2xl max-w-xl leading-relaxed">
                     Hope is not a strategy. We use deep data analytics and market intelligence to build roadmaps that eliminate risk and guarantee growth.
@@ -246,7 +253,7 @@ const Home = () => {
                    initial={{ scale: 0.8, opacity: 0 }}
                    whileInView={{ scale: 1, opacity: 1 }}
                    transition={{ duration: 0.8 }}
-                   className="relative w-full max-w-md aspect-square bg-gradient-to-br from-accent-color/20 to-transparent rounded-full blur-3xl"
+                   className="relative w-full max-w-md aspect-square bg-gradient-to-br from-accent-color/20 to-transparent rounded-none blur-3xl"
                  ></motion.div>
                  <motion.div 
                    initial={{ y: 50, opacity: 0 }}
@@ -255,7 +262,7 @@ const Home = () => {
                    className="absolute w-full max-w-lg"
                  >
                     {/* Abstract Chart Visualization */}
-                    <div className="bg-white/5 border border-white/10 backdrop-blur-md p-8 rounded-3xl">
+                    <div className="bg-white/5 border border-white/10 backdrop-blur-md p-8 rounded-none">
                       <div className="flex items-end gap-4 h-64">
                         {[40, 65, 45, 80, 55, 95].map((h, i) => (
                           <motion.div 
@@ -263,7 +270,7 @@ const Home = () => {
                             initial={{ height: 0 }}
                             whileInView={{ height: `${h}%` }}
                             transition={{ duration: 1, delay: i * 0.1 }}
-                            className={`flex-1 rounded-t-lg ${i === 5 ? 'bg-accent-color' : 'bg-white/20'}`}
+                            className={`flex-1 rounded-none ${i === 5 ? 'bg-accent-color' : 'bg-white/20'}`}
                           />
                         ))}
                       </div>
@@ -283,11 +290,8 @@ const Home = () => {
                   transition={{ duration: 0.8 }}
                   viewport={{ once: false }}
                 >
-                  <div className="w-20 h-20 bg-black/10 rounded-full flex items-center justify-center mb-8 backdrop-blur-sm">
-                    <Zap size={40} className="text-black" />
-                  </div>
                   <h3 className="text-6xl md:text-8xl font-black text-black mb-6 tracking-tighter">
-                    We Don't <br/><span className="text-black/30">Blend In.</span>
+                    We Don't <br/><span className="text-black/30">Blend In</span>
                   </h3>
                   <p className="text-black/80 text-xl md:text-2xl max-w-xl leading-relaxed font-medium">
                     Safe is risky. In a crowded world, the only way to survive is to stand out. We create radical brand identities that refuse to be ignored.
@@ -298,10 +302,10 @@ const Home = () => {
                  <motion.div 
                    animate={{ rotate: 360 }}
                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                   className="w-[500px] h-[500px] border-[2px] border-black/20 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                   className="w-[500px] h-[500px] border-[2px] border-black/20 rounded-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                  >
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black text-accent-color px-4 py-1 rounded-full font-bold">RARE</div>
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-black text-accent-color px-4 py-1 rounded-full font-bold">BOLD</div>
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black text-accent-color px-4 py-1 rounded-none font-bold">RARE</div>
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-black text-accent-color px-4 py-1 rounded-none font-bold">BOLD</div>
                  </motion.div>
                  <motion.div 
                    initial={{ scale: 0.8, opacity: 0 }}
@@ -309,7 +313,7 @@ const Home = () => {
                    transition={{ duration: 0.5 }}
                    className="relative z-10"
                  >
-                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80" alt="Art" className="w-80 h-96 object-cover rounded-[40px] rotate-[-6deg] shadow-2xl border-4 border-black" />
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80" alt="Art" className="w-80 h-96 object-cover rounded-none rotate-[-6deg] shadow-2xl border-4 border-black" />
                  </motion.div>
               </div>
             </div>
@@ -325,11 +329,8 @@ const Home = () => {
                   transition={{ duration: 0.8 }}
                   viewport={{ once: false }}
                 >
-                  <div className="w-20 h-20 bg-black/5 rounded-full flex items-center justify-center mb-8 backdrop-blur-sm">
-                    <Award size={40} className="text-accent-color" />
-                  </div>
                   <h3 className="text-6xl md:text-8xl font-black text-black mb-6 tracking-tighter">
-                    We Don't <br/><span className="text-gray-300">Stop.</span>
+                    We Don't <br/><span className="text-gray-300">Stop</span>
                   </h3>
                   <p className="text-gray-600 text-xl md:text-2xl max-w-xl leading-relaxed">
                     Launch is just day one. We obsessively monitor, test, and optimize every campaign to ensure your ROI keeps climbing.
@@ -342,7 +343,7 @@ const Home = () => {
                       initial={{ y: 100, opacity: 0 }}
                       whileInView={{ y: 0, opacity: 1 }}
                       transition={{ duration: 0.6 }}
-                      className="bg-gray-100 p-8 rounded-[30px] w-48 h-64 flex flex-col justify-between"
+                      className="bg-gray-100 p-8 rounded-none w-48 h-64 flex flex-col justify-between"
                     >
                        <span className="text-4xl font-bold">2x</span>
                        <span className="text-gray-500">Revenue Growth</span>
@@ -351,7 +352,7 @@ const Home = () => {
                       initial={{ y: 100, opacity: 0 }}
                       whileInView={{ y: 0, opacity: 1 }}
                       transition={{ duration: 0.6, delay: 0.2 }}
-                      className="bg-black text-white p-8 rounded-[30px] w-48 h-64 flex flex-col justify-between mt-12"
+                      className="bg-black text-white p-8 rounded-none w-48 h-64 flex flex-col justify-between mt-12"
                     >
                        <span className="text-4xl font-bold text-accent-color">#1</span>
                        <span className="text-gray-400">Market Position</span>
@@ -400,7 +401,7 @@ const Home = () => {
 
             {/* Right Image */}
             <motion.div 
-              className="relative h-[400px] lg:h-[600px] w-full rounded-[40px] overflow-hidden shadow-2xl"
+              className="relative h-[400px] lg:h-[600px] w-full rounded-none overflow-hidden shadow-2xl"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -422,7 +423,7 @@ const Home = () => {
       <section className="section">
         <div className="container">
           <motion.div 
-            className="bg-bg-secondary border border-black/10 rounded-[30px] p-10 md:p-20 text-center relative overflow-hidden"
+            className="bg-bg-secondary border border-black/10 rounded-none p-10 md:p-20 text-center relative overflow-hidden"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}

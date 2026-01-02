@@ -51,7 +51,7 @@ const Navbar = () => {
             <AnimatePresence>
               {isOpen && (
                 <motion.div 
-                  className="absolute top-full left-1/2 -translate-x-1/2 bg-bg-secondary border border-white/10 rounded-xl p-2.5 min-w-[240px] shadow-2xl overflow-hidden"
+                  className="absolute top-full left-1/2 -translate-x-1/2 bg-bg-secondary border border-white/10 rounded-none p-2.5 min-w-[240px] shadow-2xl overflow-hidden"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
@@ -61,7 +61,7 @@ const Navbar = () => {
                     <Link 
                       key={index} 
                       to={service.path} 
-                      className="block px-4 py-3 text-text-secondary rounded-lg transition-all duration-200 text-sm hover:bg-white/5 hover:text-text-primary"
+                      className="block px-4 py-3 text-text-secondary rounded-none transition-all duration-200 text-sm hover:bg-white/5 hover:text-text-primary"
                     >
                       {service.title}
                     </Link>
