@@ -48,13 +48,13 @@ const Home = () => {
     { value: '100+', label: 'Satisfied Customers' },
   ];
 
-  const whyUsPoints = [
-    'Deep Cross-Channel Integration',
-    'Data-Driven Decision Making',
-    'Industry-Specific Expertise',
-    'Agile Campaign Management',
-    'Full-Service Creative Studio',
-    'Dedicated Client Success Team'
+  const whyUsFeatures = [
+    { icon: <Layers size={28} />, title: 'Deep Cross-Channel Integration', desc: 'Seamlessly connecting every touchpoint for a unified brand experience.' },
+    { icon: <BarChart size={28} />, title: 'Data-Driven Decision Making', desc: 'Strategies backed by real analytics to ensure measurable growth.' },
+    { icon: <Target size={28} />, title: 'Industry-Specific Expertise', desc: 'Tailored solutions designed specifically for your market niche.' },
+    { icon: <Zap size={28} />, title: 'Agile Campaign Management', desc: 'Quick pivots and optimizations to maximize impact in real-time.' },
+    { icon: <Award size={28} />, title: 'Full-Service Creative Studio', desc: 'Design that captures attention and tells your unique story.' },
+    { icon: <Users size={28} />, title: 'Dedicated Client Success Team', desc: 'We are with you every step of the way, ensuring your goals are met.' }
   ];
 
   const clients = [
@@ -194,41 +194,78 @@ const Home = () => {
       </section>
 
       {/* Why Us Section */}
-      <section className="section bg-bg-secondary/30">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-[60px] items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+      <section className="section bg-bg-secondary relative overflow-hidden">
+         {/* Background Elements */}
+         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-accent-color/5 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-accent-color/5 rounded-full blur-3xl"></div>
+         </div>
+
+        <div className="container relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <motion.span 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              className="text-accent-color font-bold tracking-wider uppercase text-sm mb-4 block"
             >
-              <h2 className="text-[42px] mb-6 font-bold">Why Us?</h2>
-              <p className="text-text-secondary text-lg mb-8 leading-relaxed">
-                At Emblare, we don’t just deliver services — we deliver impact. Our approach is built on strategy, creativity, and technology working in sync to fuel growth and distinction for your brand.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-                {whyUsPoints.map((point, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-accent-color"></div>
-                    <span className="text-text-primary font-medium">{point}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-            
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-3 gap-6"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              The Emblare Difference
+            </motion.span>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl md:text-5xl font-bold mb-6"
             >
-              {stats.map((stat, index) => (
-                <div key={index} className="bg-bg-secondary p-6 rounded-2xl border border-black/5 text-center hover:border-accent-color/50 transition-colors">
-                  <h3 className="text-4xl font-bold text-accent-color mb-2">{stat.value}</h3>
-                  <p className="text-sm text-text-secondary">{stat.label}</p>
+              Why Partner With Us?
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-text-secondary text-lg"
+            >
+              We don’t just deliver services — we deliver impact. Our approach is built on strategy, creativity, and technology working in sync.
+            </motion.p>
+          </div>
+
+          {/* Stats Row */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white p-8 rounded-3xl shadow-sm border border-black/5 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
+              >
+                <h3 className="text-5xl font-bold text-gray-900 mb-2 group-hover:text-accent-color transition-colors">{stat.value}</h3>
+                <p className="text-gray-500 font-medium uppercase tracking-wide text-sm">{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {whyUsFeatures.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 + (index * 0.05) }}
+                className="bg-white p-8 rounded-3xl border border-black/5 hover:border-accent-color hover:shadow-xl transition-all duration-300 group"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-bg-secondary flex items-center justify-center text-black mb-6 group-hover:bg-accent-color transition-colors duration-300">
+                  {feature.icon}
                 </div>
-              ))}
-            </motion.div>
+                <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                <p className="text-text-secondary leading-relaxed">{feature.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
