@@ -12,6 +12,12 @@ import mahiLogo from '../assets/client/saucy-mahi.png';
 import tommyLogo from '../assets/client/tommy.jpeg';
 import zomatoLogo from '../assets/client/zomato.png';
 
+import iconSocial from '../assets/icons/feature-icon1-1.svg';
+import iconAds from '../assets/icons/feature-icon1-2.svg';
+import iconSEO from '../assets/icons/feature-icon1-3.svg';
+import iconWeb from '../assets/icons/feature-icon1-4.svg';
+import iconEdit from '../assets/icons/feature-icon1-5.svg';
+
 const Home = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -29,11 +35,11 @@ const Home = () => {
   };
 
   const services = [
-    { icon: <Users size={32} />, title: 'Social Media', desc: 'We craft strategies that fuel authentic connections. We love building communities and helping brands grow.', link: '/services/social-media-marketing' },
-    { icon: <Target size={32} />, title: 'Online Ads', desc: 'We deliver targeted campaigns that maximize reach. We love creating impact and helping brands scale.', link: '/services/online-ads' },
-    { icon: <BarChart size={32} />, title: 'SEO', desc: 'We design strategies that improve visibility online. We love driving growth and helping brands stand out.', link: '/services/seo' },
-    { icon: <Globe size={32} />, title: 'Web Design & Development', desc: 'We build digital platforms that engage users deeply. We love designing experiences and helping brands thrive.', link: '/services/web-design' },
-    { icon: <Video size={32} />, title: 'Editing and Production', desc: 'We create visuals that bring stories to life. We love producing content and helping brands inspire.', link: '/services/editing-producing' },
+    { icon: iconSocial, title: 'Social Media', desc: 'We craft strategies that fuel authentic connections. We love building communities and helping brands grow.', link: '/services/social-media-marketing' },
+    { icon: iconAds, title: 'Online Ads', desc: 'We deliver targeted campaigns that maximize reach. We love creating impact and helping brands scale.', link: '/services/online-ads' },
+    { icon: iconSEO, title: 'SEO', desc: 'We design strategies that improve visibility online. We love driving growth and helping brands stand out.', link: '/services/seo' },
+    { icon: iconWeb, title: 'Web Design & Development', desc: 'We build digital platforms that engage users deeply. We love designing experiences and helping brands thrive.', link: '/services/web-design' },
+    { icon: iconEdit, title: 'Editing and Production', desc: 'We create visuals that bring stories to life. We love producing content and helping brands inspire.', link: '/services/editing-producing' },
   ];
 
   const stats = [
@@ -138,7 +144,9 @@ const Home = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div className="text-accent-color mb-6">{service.icon}</div>
+                <div className="mb-6">
+                  <img src={service.icon} alt={service.title} className="w-16 h-16 object-contain" />
+                </div>
                 <h3 className="text-2xl mb-3 font-bold">{service.title}</h3>
                 <p className="text-text-secondary mb-6 leading-relaxed">{service.desc}</p>
                 <Link to={service.link} className="flex items-center gap-2 text-accent-color font-semibold text-sm">
