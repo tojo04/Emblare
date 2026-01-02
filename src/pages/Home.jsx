@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Globe, BarChart, Video, Users, Target, Zap, Layers, Award, Smile } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -193,80 +193,172 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Why Us Section */}
-      <section className="section bg-bg-secondary relative overflow-hidden">
-         {/* Background Elements */}
-         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-            <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-accent-color/5 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-accent-color/5 rounded-full blur-3xl"></div>
-         </div>
+      {/* Why Us Section - Sticky Card Stack */}
+      <section className="bg-[#050505] relative">
+        
+        {/* Intro Header */}
+        <div className="container py-24 md:py-32">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-4xl"
+          >
+            <span className="text-accent-color font-bold tracking-wider uppercase text-sm mb-4 block">The Emblare Difference</span>
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.9]">
+              Why We Are <span className="text-accent-color">Rare.</span>
+            </h2>
+            <p className="text-gray-400 text-xl md:text-2xl mt-8 max-w-2xl leading-relaxed">
+              Most agencies follow a playbook. We rewrite it. Here is how we build brands that dominate.
+            </p>
+          </motion.div>
+        </div>
 
-        <div className="container relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <motion.span 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-accent-color font-bold tracking-wider uppercase text-sm mb-4 block"
-            >
-              The Emblare Difference
-            </motion.span>
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl font-bold mb-6"
-            >
-              Why Partner With Us?
-            </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-text-secondary text-lg"
-            >
-              We don’t just deliver services — we deliver impact. Our approach is built on strategy, creativity, and technology working in sync.
-            </motion.p>
+        {/* Sticky Cards Container */}
+        <div className="relative w-full">
+          
+          {/* Card 1: Strategy */}
+          <div className="sticky top-0 h-screen flex items-center justify-center bg-[#0a0a0a] border-t border-white/10 overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 to-transparent opacity-50"></div>
+            <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full">
+              <div className="order-2 lg:order-1">
+                <motion.div 
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: false }}
+                >
+                  <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mb-8 backdrop-blur-sm border border-white/10">
+                    <Target size={40} className="text-accent-color" />
+                  </div>
+                  <h3 className="text-6xl md:text-8xl font-black text-white mb-6 tracking-tighter">
+                    We Don't <br/><span className="text-gray-700">Guess.</span>
+                  </h3>
+                  <p className="text-gray-400 text-xl md:text-2xl max-w-xl leading-relaxed">
+                    Hope is not a strategy. We use deep data analytics and market intelligence to build roadmaps that eliminate risk and guarantee growth.
+                  </p>
+                </motion.div>
+              </div>
+              <div className="order-1 lg:order-2 flex justify-center">
+                 <motion.div 
+                   initial={{ scale: 0.8, opacity: 0 }}
+                   whileInView={{ scale: 1, opacity: 1 }}
+                   transition={{ duration: 0.8 }}
+                   className="relative w-full max-w-md aspect-square bg-gradient-to-br from-accent-color/20 to-transparent rounded-full blur-3xl"
+                 ></motion.div>
+                 <motion.div 
+                   initial={{ y: 50, opacity: 0 }}
+                   whileInView={{ y: 0, opacity: 1 }}
+                   transition={{ duration: 0.8, delay: 0.2 }}
+                   className="absolute w-full max-w-lg"
+                 >
+                    {/* Abstract Chart Visualization */}
+                    <div className="bg-white/5 border border-white/10 backdrop-blur-md p-8 rounded-3xl">
+                      <div className="flex items-end gap-4 h-64">
+                        {[40, 65, 45, 80, 55, 95].map((h, i) => (
+                          <motion.div 
+                            key={i}
+                            initial={{ height: 0 }}
+                            whileInView={{ height: `${h}%` }}
+                            transition={{ duration: 1, delay: i * 0.1 }}
+                            className={`flex-1 rounded-t-lg ${i === 5 ? 'bg-accent-color' : 'bg-white/20'}`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                 </motion.div>
+              </div>
+            </div>
           </div>
 
-          {/* Stats Row */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white p-8 rounded-3xl shadow-sm border border-black/5 text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
-              >
-                <h3 className="text-5xl font-bold text-gray-900 mb-2 group-hover:text-accent-color transition-colors">{stat.value}</h3>
-                <p className="text-gray-500 font-medium uppercase tracking-wide text-sm">{stat.label}</p>
-              </motion.div>
-            ))}
+          {/* Card 2: Creativity */}
+          <div className="sticky top-0 h-screen flex items-center justify-center bg-accent-color text-black overflow-hidden">
+            <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full">
+              <div className="order-2 lg:order-1">
+                <motion.div 
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: false }}
+                >
+                  <div className="w-20 h-20 bg-black/10 rounded-full flex items-center justify-center mb-8 backdrop-blur-sm">
+                    <Zap size={40} className="text-black" />
+                  </div>
+                  <h3 className="text-6xl md:text-8xl font-black text-black mb-6 tracking-tighter">
+                    We Don't <br/><span className="text-black/30">Blend In.</span>
+                  </h3>
+                  <p className="text-black/80 text-xl md:text-2xl max-w-xl leading-relaxed font-medium">
+                    Safe is risky. In a crowded world, the only way to survive is to stand out. We create radical brand identities that refuse to be ignored.
+                  </p>
+                </motion.div>
+              </div>
+              <div className="order-1 lg:order-2 flex justify-center relative">
+                 <motion.div 
+                   animate={{ rotate: 360 }}
+                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                   className="w-[500px] h-[500px] border-[2px] border-black/20 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                 >
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black text-accent-color px-4 py-1 rounded-full font-bold">RARE</div>
+                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 bg-black text-accent-color px-4 py-1 rounded-full font-bold">BOLD</div>
+                 </motion.div>
+                 <motion.div 
+                   initial={{ scale: 0.8, opacity: 0 }}
+                   whileInView={{ scale: 1, opacity: 1 }}
+                   transition={{ duration: 0.5 }}
+                   className="relative z-10"
+                 >
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80" alt="Art" className="w-80 h-96 object-cover rounded-[40px] rotate-[-6deg] shadow-2xl border-4 border-black" />
+                 </motion.div>
+              </div>
+            </div>
           </div>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {whyUsFeatures.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 + (index * 0.05) }}
-                className="bg-white p-8 rounded-3xl border border-black/5 hover:border-accent-color hover:shadow-xl transition-all duration-300 group"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-bg-secondary flex items-center justify-center text-black mb-6 group-hover:bg-accent-color transition-colors duration-300">
-                  {feature.icon}
-                </div>
-                <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                <p className="text-text-secondary leading-relaxed">{feature.desc}</p>
-              </motion.div>
-            ))}
+          {/* Card 3: Results */}
+          <div className="sticky top-0 h-screen flex items-center justify-center bg-white text-black overflow-hidden">
+            <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full">
+              <div className="order-2 lg:order-1">
+                <motion.div 
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: false }}
+                >
+                  <div className="w-20 h-20 bg-black/5 rounded-full flex items-center justify-center mb-8 backdrop-blur-sm">
+                    <Award size={40} className="text-accent-color" />
+                  </div>
+                  <h3 className="text-6xl md:text-8xl font-black text-black mb-6 tracking-tighter">
+                    We Don't <br/><span className="text-gray-300">Stop.</span>
+                  </h3>
+                  <p className="text-gray-600 text-xl md:text-2xl max-w-xl leading-relaxed">
+                    Launch is just day one. We obsessively monitor, test, and optimize every campaign to ensure your ROI keeps climbing.
+                  </p>
+                </motion.div>
+              </div>
+              <div className="order-1 lg:order-2 flex justify-center">
+                 <div className="grid grid-cols-2 gap-6">
+                    <motion.div 
+                      initial={{ y: 100, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.6 }}
+                      className="bg-gray-100 p-8 rounded-[30px] w-48 h-64 flex flex-col justify-between"
+                    >
+                       <span className="text-4xl font-bold">2x</span>
+                       <span className="text-gray-500">Revenue Growth</span>
+                    </motion.div>
+                    <motion.div 
+                      initial={{ y: 100, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                      className="bg-black text-white p-8 rounded-[30px] w-48 h-64 flex flex-col justify-between mt-12"
+                    >
+                       <span className="text-4xl font-bold text-accent-color">#1</span>
+                       <span className="text-gray-400">Market Position</span>
+                    </motion.div>
+                 </div>
+              </div>
+            </div>
           </div>
+
         </div>
       </section>
 
