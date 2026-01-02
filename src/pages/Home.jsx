@@ -18,6 +18,8 @@ import iconSEO from '../assets/icons/feature-icon1-3.svg';
 import iconWeb from '../assets/icons/feature-icon1-4.svg';
 import iconEdit from '../assets/icons/feature-icon1-5.svg';
 
+import Testimonials from '../components/sections/Testimonials';
+
 const Home = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -413,6 +415,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <Testimonials />
 
       {/* CTA Section */}
       <section className="section">

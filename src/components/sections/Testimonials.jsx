@@ -1,93 +1,88 @@
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
-import { Quote } from 'lucide-react'
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Quote } from 'lucide-react';
+
+const testimonials = [
+  {
+    id: 1,
+    quote: "Working with Emblare felt like having an in-house growth partner. Their professionalism and innovation made all the difference for us.",
+    author: "Head of Digital",
+    company: "Tommy Hilfiger India",
+  },
+  {
+    id: 2,
+    quote: "The team at Emblare truly understands what it means to build a brand. From concept to execution, they delivered creativity and measurable results.",
+    author: "Brand Manager",
+    company: "Pushp Masale",
+  },
+  {
+    id: 3,
+    quote: "Partnering with Emblare transformed our digital presence. Their mix of strategy, design, and technology helped us scale faster than we imagined.",
+    author: "Marketing Director",
+    company: "Apollo Hospitals",
+  }
+];
 
 const Testimonials = () => {
-  const [ref, inView] = useInView({
-    threshold: 0.2,
-    triggerOnce: true,
-  })
-
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const testimonials = [
-    {
-      text: 'Partnering with Emblare transformed our digital presence. Their mix of strategy, design, and technology helped us scale faster than we imagined.',
-      author: '',
-      role: 'Marketing Director, Apollo Hospitals',
-    },
-    {
-      text: 'The team at Emblare truly understands what it means to build a brand. From concept to execution, they delivered creativity and measurable results.',
-      author: '',
-      role: 'Brand Manager, Pushp Masale',
-    },
-    {
-      text: 'Working with Emblare felt like having an in-house growth partner. Their professionalism and innovation made all the difference for us.',
-      author: '',
-      role: 'Head of Digital, Tommy Hilfiger India',
-    },
-  ]
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [testimonials.length])
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <section ref={ref} className="py-24 bg-theme">
+    <section className="py-24 bg-accent-color">
       <div className="container mx-auto px-4">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-5xl lg:text-6xl font-bold text-title mb-4">
-            What Our Clients Say
-          </h2>
-        </motion.div>
+        <h2 className="text-4xl md:text-6xl font-bold text-center mb-16 text-black tracking-tight">
+          What Our Clients Say
+        </h2>
 
-        <div className="max-w-4xl mx-auto relative">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentIndex}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.5 }}
-              className="bg-white p-12 rounded-2xl shadow-2xl"
-            >
-              <Quote className="w-12 h-12 text-theme mb-6" />
-              <p className="text-2xl text-title mb-8 leading-relaxed">
-                "{testimonials[currentIndex].text}"
-              </p>
-              <div>
-                <p className="font-bold text-title">{testimonials[currentIndex].author}</p>
-                <p className="text-body">{testimonials[currentIndex].role}</p>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white rounded-[30px] p-10 md:p-16 shadow-2xl min-h-[350px] flex flex-col justify-center relative overflow-hidden">
+            <Quote className="text-accent-color w-12 h-12 mb-8 flex-shrink-0" />
+            
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="relative z-10"
+              >
+                <p className="text-xl md:text-3xl leading-relaxed text-gray-900 mb-8 font-medium">
+                  "{testimonials[currentIndex].quote}"
+                </p>
+                <div className="border-t border-gray-100 pt-6">
+                  <p className="text-gray-500 font-medium text-lg">
+                    {testimonials[currentIndex].author}, <span className="text-gray-900 font-semibold">{testimonials[currentIndex].company}</span>
+                  </p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
 
-          {/* Dots Indicator */}
-          <div className="flex justify-center gap-2 mt-8">
+          {/* Navigation Dots */}
+          <div className="flex justify-center gap-3 mt-10">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all ${
-                  index === currentIndex ? 'bg-title w-8' : 'bg-title/30'
+                className={`h-3 rounded-full transition-all duration-300 ${
+                  index === currentIndex ? 'w-10 bg-black' : 'w-3 bg-black/20 hover:bg-black/40'
                 }`}
+                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Testimonials
+export default Testimonials;
 
