@@ -3,6 +3,9 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CheckCircle, ArrowRight, Sparkles, Zap, TrendingUp, MessageCircle, Users, Share2, Target, BarChart, Monitor, Video, Search, MousePointer } from 'lucide-react';
 import socialMediaImg from '../assets/service/social_media_marketing_1.jpg';
+import digitalMarketingImg from '../assets/service/digital_marketing.jpg';
+import webDesignImg from '../assets/service/web_design.jpg';
+import editingProducingImg from '../assets/service/editing_producing.jpg';
 import adsImg from '../assets/service/ads.png';
 import seoImg from '../assets/service/seo.png';
 import webImg from '../assets/service/web.png';
@@ -38,7 +41,7 @@ const servicesData = {
       { title: 'Retargeting Campaigns', image: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=1000&auto=format&fit=crop', desc: 'Bringing back lost visitors and turning them into loyal customers.' }
     ],
     color: '#4285F4',
-    image: adsImg,
+    image: digitalMarketingImg,
     stats: [
       { value: '5x', label: 'Average ROAS' },
       { value: '-40%', label: 'Cost Per Acquisition' },
@@ -74,7 +77,7 @@ const servicesData = {
       { title: 'CMS Integration', image: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1000&auto=format&fit=crop', desc: 'Easy-to-manage content systems that put you in control.' }
     ],
     color: '#6366f1',
-    image: webImg,
+    image: webDesignImg,
     stats: [
       { value: '<1s', label: 'Load Time' },
       { value: '2x', label: 'Conversion Rate' },
@@ -92,7 +95,7 @@ const servicesData = {
       { title: 'Color Grading', image: 'https://images.unsplash.com/photo-1535016120720-40c6874c3b1c?q=80&w=1000&auto=format&fit=crop', desc: 'Professional polish that gives your footage a premium look.' }
     ],
     color: '#F48024',
-    image: editingImg,
+    image: editingProducingImg,
     stats: [
       { value: '4K', label: 'Production Quality' },
       { value: '3x', label: 'Viewer Retention' },

@@ -34,7 +34,7 @@ const Navbar = () => {
           <img src={logoIcon} alt="Emblare" className="h-10 w-auto" />
         </Link>
 
-        <div className="hidden md:flex items-center gap-10 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2 h-full">
           <Link to="/" className={`text-base text-text-secondary transition-colors duration-300 flex items-center gap-1.5 cursor-pointer relative hover:text-text-primary ${location.pathname === '/' ? 'text-text-primary' : ''}`}>
             Home
           </Link>
@@ -51,7 +51,7 @@ const Navbar = () => {
             <AnimatePresence>
               {isOpen && (
                 <motion.div 
-                  className="absolute top-[60px] left-1/2 -translate-x-1/2 bg-bg-secondary border border-white/10 rounded-xl p-2.5 min-w-[240px] shadow-2xl overflow-hidden"
+                  className="absolute top-full left-1/2 -translate-x-1/2 bg-bg-secondary border border-white/10 rounded-xl p-2.5 min-w-[240px] shadow-2xl overflow-hidden"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
