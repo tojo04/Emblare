@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Globe, BarChart, Video, Users, Target, Zap, Layers, Award, Smile } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import Button from '../components/Button';
 
 import apolloLogo from '../assets/client/apollo.jpg';
 import cloud360Logo from '../assets/client/cloud360.webp';
@@ -121,9 +122,9 @@ const Home = () => {
             </motion.div>
 
             <motion.div variants={itemVariants} className="flex justify-center">
-              <Link to="/contact" className="btn btn-primary px-12 py-5 text-xl font-bold tracking-wide shadow-lg hover:shadow-xl transform transition-all duration-300">
+              <Button to="/contact" className="btn btn-primary px-12 py-5 text-xl font-bold tracking-wide shadow-lg hover:shadow-xl transform transition-all duration-300">
                 Let's Create Something Rare
-              </Link>
+              </Button>
             </motion.div>
           </motion.div>
         </div>
@@ -432,9 +433,9 @@ const Home = () => {
             <p className="text-lg md:text-xl mb-10 opacity-90 relative z-10 max-w-2xl mx-auto">
               Great! We’re excited to connect with you and bring your vision to life.
             </p>
-            <Link to="/contact" className="btn btn-primary inline-block relative z-10">
+            <Button to="/contact" className="btn btn-primary inline-block relative z-10">
               LET'S TALK
-            </Link>
+            </Button>
           </motion.div>
         </div>
       </section>

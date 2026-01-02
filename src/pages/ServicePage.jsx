@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Button from '../components/Button';
 import { CheckCircle, ArrowRight, Sparkles, Zap, TrendingUp, MessageCircle, Users, Share2, Target, BarChart, Monitor, Video, Search, MousePointer } from 'lucide-react';
 import socialMediaImg from '../assets/service/social_media_marketing_1.jpg';
 import digitalMarketingImg from '../assets/service/digital_marketing.jpg';
@@ -15,7 +16,7 @@ const servicesData = {
   'social-media-marketing': {
     title: 'Social Media Marketing',
     subtitle: 'We don’t just post. We ignite conversations.',
-    description: 'In a world of infinite scroll, stopping the thumb is an art form. We craft social narratives that don’t just reach audiences—they resonate, engage, and convert. From viral-ready content to community-building strategies, we turn your brand into a living, breathing entity that people actually want to follow.',
+    description: 'In a world of infinite scroll, stopping the thumb is an art form. Emblare is proud to lead the way in crafting social narratives that resonate with audiences. We help brands evolve their digital voice, and will be responsible for creating brand campaigns, content strategies, and all future visual assets.',
     features: [
       { title: 'Viral Content Strategy', image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop', desc: 'Data-backed content calendars designed to trigger algorithms and engagement.' },
       { title: 'Community Management', image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000&auto=format&fit=crop', desc: 'Building loyal tribes around your brand through active, authentic listening.' },
@@ -246,10 +247,10 @@ const ServicePage = () => {
                )}
                
                <div className="mt-8">
-                  <Link to="/contact" className="inline-flex items-center gap-3 bg-black text-white px-10 py-5 rounded-none font-bold text-xl hover:bg-[var(--service-color)] hover:text-black transition-all duration-300 group" style={{ '--service-color': service.color }}>
+                  <Button to="/contact" className="inline-flex items-center gap-3 bg-black text-white px-10 py-5 rounded-none font-bold text-xl hover:bg-[var(--service-color)] hover:text-black transition-all duration-300" style={{ '--service-color': service.color }}>
                      Start Your Project
                      <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                  </Button>
                </div>
             </div>
          </div>

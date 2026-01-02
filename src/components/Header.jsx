@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
+import NavLink from './NavLink'
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -56,49 +57,38 @@ const Header = () => {
             {/* Desktop Menu */}
             <div className="hidden lg:flex items-center gap-8">
               {menuItems.map((item, index) => (
-                <div key={index} className="relative group">
-                  <Link
-                    to={item.path}
-                    className={`relative text-sm font-semibold uppercase tracking-wider transition-colors ${
-                      location.pathname === item.path
-                        ? 'text-theme'
-                        : 'text-title hover:text-theme'
-                    }`}
-                  >
-                    <motion.span
-                      className="block"
-                      whileHover={{ y: -2 }}
-                      transition={{ type: 'spring', stiffness: 400 }}
-                    >
-                      {item.name}
-                    </motion.span>
-                    {location.pathname === item.path && (
-                      <motion.div
-                        layoutId="activeTab"
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-theme"
-                        initial={false}
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
-                    )}
-                  </Link>
+                <motion.div 
+                  key={index} 
+                  className="relative group"
+                  initial="closed"
+                  whileHover="open"
+                >
+                  <NavLink item={item} isActive={location.pathname === item.path} />
 
                   {/* Submenu */}
                   {item.submenu && (
-                    <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-none shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                    <motion.div 
+                      variants={{
+                        closed: { opacity: 0, height: 0, overflow: "hidden" },
+                        open: { opacity: 1, height: "auto", overflow: "hidden" }
+                      }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="absolute top-full left-0 mt-2 w-64 bg-white rounded-none shadow-xl border border-black/5"
+                    >
                       <div className="py-2">
                         {item.submenu.map((subItem, subIndex) => (
                           <Link
                             key={subIndex}
                             to={subItem.path}
-                            className="block px-6 py-3 text-sm text-title hover:bg-theme/10 hover:text-theme transition-colors"
+                            className="block px-6 py-3 text-sm text-black hover:bg-theme/10 hover:text-theme transition-colors font-medium"
                           >
                             {subItem.name}
                           </Link>
                         ))}
                       </div>
-                    </div>
+                    </motion.div>
                   )}
-                </div>
+                </motion.div>
               ))}
             </div>
 

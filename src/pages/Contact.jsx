@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import Button from '../components/Button';
 
 const Contact = () => {
-  const [isHovered, setIsHovered] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
 
   return (
@@ -128,39 +128,12 @@ const Contact = () => {
                   />
                 </motion.div>
 
-                <motion.button 
+                <Button 
                   type="submit" 
-                  className="bg-black text-[#D4FF00] px-10 py-5 font-bold text-sm uppercase tracking-wider transition-colors mt-4 overflow-hidden relative"
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                  whileHover={{ 
-                    scale: 1.05,
-                    backgroundColor: "rgba(0, 0, 0, 0.9)",
-                    transition: { duration: 0.2 }
-                  }}
-                  whileTap={{ scale: 0.95 }}
+                  className="bg-black text-[#D4FF00] px-10 py-5 font-bold text-sm uppercase tracking-wider transition-colors mt-4"
                 >
-                  <motion.span
-                    className="block"
-                    animate={{
-                      y: isHovered ? -40 : 0,
-                      opacity: isHovered ? 0 : 1
-                    }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                  >
-                    SEND MESSAGE
-                  </motion.span>
-                  <motion.span
-                    className="absolute inset-0 flex items-center justify-center"
-                    animate={{
-                      y: isHovered ? 0 : 40,
-                      opacity: isHovered ? 1 : 0
-                    }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                  >
-                    SEND MESSAGE
-                  </motion.span>
-                </motion.button>
+                  SEND MESSAGE
+                </Button>
               </form>
             </div>
           </motion.div>

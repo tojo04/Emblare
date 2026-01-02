@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { gsap } from 'gsap'
 import { Link } from 'react-router-dom'
+import Button from '../Button'
 
 const Hero = () => {
   const heroRef = useRef(null)
@@ -154,12 +155,12 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <Link
+              <Button
                 to="/contact"
-                className="inline-block px-8 py-4 bg-theme text-title font-bold rounded-none hover:scale-105 transition-transform shadow-lg hover:shadow-xl"
+                className="inline-block px-8 py-4 bg-theme text-title font-bold rounded-none shadow-lg hover:shadow-xl"
               >
                 Let's Create Something Rare
-              </Link>
+              </Button>
             </motion.div>
           </motion.div>
         </motion.div>

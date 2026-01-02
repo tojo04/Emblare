@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Link } from 'react-router-dom'
+import Button from '../Button'
 
 const CTA = () => {
   const [ref, inView] = useInView({
@@ -40,17 +41,14 @@ const CTA = () => {
               Great! We're excited to connect with you and bring your vision to life.
             </p>
           </div>
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Link
+          <div>
+            <Button
               to="/contact"
               className="inline-block px-12 py-6 bg-theme text-title font-bold rounded-none text-lg hover:shadow-2xl transition-all"
             >
               LET'S TALK
-            </Link>
-          </motion.div>
+            </Button>
+          </div>
         </motion.div>
       </div>
     </section>
