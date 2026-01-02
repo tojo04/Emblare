@@ -9,7 +9,9 @@
   --color-text-secondary: #4b5563;
   --color-accent-color: #D4FF00;
   
-  --font-main: Inter, system-ui, -apple-system, sans-serif;
+  --font-heading: 'Poppins', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-button: 'Inter', system-ui, -apple-system, sans-serif;
   
   --background-image-accent-gradient: linear-gradient(135deg, #D4FF00 0%, #b7dd00 100%);
 
@@ -29,7 +31,19 @@
 
 @layer base {
   body {
-    @apply bg-bg-primary text-text-primary font-main overflow-x-hidden antialiased;
+    @apply bg-bg-primary text-text-primary overflow-x-hidden antialiased;
+    font-family: var(--font-body);
+    font-weight: 400;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+  
+  button, .btn {
+    font-family: var(--font-button);
+    font-weight: 600;
   }
   
   /* Scrollbar */

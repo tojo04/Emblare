@@ -14,7 +14,9 @@ export default {
         'accent-color': 'var(--color-accent-color)',
       },
       fontFamily: {
-        'main': 'var(--font-main)',
+        'heading': 'var(--font-heading)',
+        'body': 'var(--font-body)',
+        'button': 'var(--font-button)',
       },
       backgroundImage: {
         'accent-gradient': 'var(--background-image-accent-gradient)',
