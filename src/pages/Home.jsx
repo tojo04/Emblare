@@ -271,47 +271,52 @@ const Home = () => {
       </section>
 
       {/* Passionate Section */}
-      <section className="section">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-[80px]">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+      <section className="w-full bg-accent-color py-20 lg:py-32 relative overflow-hidden">
+        {/* Decorative background text */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-5">
+            <span className="text-[200px] font-black leading-none whitespace-nowrap absolute -top-10 -left-10">RARE</span>
+            <span className="text-[200px] font-black leading-none whitespace-nowrap absolute bottom-0 right-0">IDEAS</span>
+        </div>
+
+        <div className="container mx-auto px-5">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left Content */}
+            <motion.div 
+              className="relative z-10"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
             >
-              <span className="text-accent-color font-semibold mb-2 block">Passionate About Building Rare Brands</span>
-              <h2 className="text-[36px] mb-6 font-bold">We Love What We Do</h2>
-              <p className="text-text-secondary text-lg mb-8 leading-relaxed">
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-black mb-8 leading-[0.9] tracking-tighter">
+                Passionate About Building Rare Brands
+              </h2>
+              <h3 className="text-2xl font-bold text-black mb-6">We Love What We Do</h3>
+              <p className="text-black/80 text-lg mb-8 leading-relaxed font-medium max-w-xl">
                 At Emblare, we partner with ambitious businesses, blending creativity and innovation to craft distinct identities, growth strategies, and long-lasting value.
               </p>
               
-              <h3 className="text-2xl mb-4 font-bold">Why Work With Us</h3>
-              <p className="text-text-secondary text-lg leading-relaxed">
-                If you ask our clients what it’s like working with Emblare, they’ll talk about how much we care about their success. For us, real relationships fuel real impact. We love shaping brands.
-              </p>
+              <div className="space-y-4">
+                <h4 className="text-xl font-bold text-black">Why Work With Us</h4>
+                <p className="text-black/80 text-lg leading-relaxed max-w-xl">
+                  If you ask our clients what it’s like working with Emblare, they’ll talk about how much we care about their success. For us, real relationships fuel real impact. We love shaping brands.
+                </p>
+              </div>
             </motion.div>
 
-            <motion.div
-              className="bg-accent-gradient p-10 rounded-3xl relative overflow-hidden flex flex-col justify-center"
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+            {/* Right Image */}
+            <motion.div 
+              className="relative h-[400px] lg:h-[600px] w-full rounded-[40px] overflow-hidden shadow-2xl"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
             >
-              <div className="absolute top-0 right-0 p-10 opacity-10">
-                <Award size={100} />
-              </div>
-              <div className="relative z-10">
-                <div className="mb-6 text-white/80">
-                  <Smile size={40} />
-                </div>
-                <p className="text-xl md:text-2xl font-medium text-white mb-8 italic">
-                  “Partnering with Emblare transformed our digital presence. Their mix of strategy, design, and technology helped us scale faster than we imagined.”
-                </p>
-                <div>
-                  <p className="font-bold text-white">Marketing Director</p>
-                  <p className="text-white/70">Apollo Hospitals</p>
-                </div>
-              </div>
+              <img 
+                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1600&q=80" 
+                alt="Creative Team at Work" 
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              />
             </motion.div>
           </div>
         </div>
