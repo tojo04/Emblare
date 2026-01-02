@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import logoIcon from '../assets/favicon.png';
+import Button from './Button';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isServicesHovered, setIsServicesHovered] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const services = [
     { title: 'Social Media Marketing', path: '/services/social-media-marketing' },
@@ -24,7 +36,11 @@ const Navbar = () => {
 
   return (
     <motion.nav 
-      className="fixed top-0 left-0 w-full h-[80px] bg-bg-primary/80 backdrop-blur-md z-50 border-b border-black/5"
+      className={`fixed top-0 left-0 w-full h-[80px] z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-black/10' 
+          : 'bg-transparent'
+      }`}
       initial="hidden"
       animate="visible"
       variants={navVariants}
@@ -35,18 +51,46 @@ const Navbar = () => {
         </Link>
 
         <div className="hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2 h-full">
-          <Link to="/" className={`text-base text-text-secondary transition-colors duration-300 flex items-center gap-1.5 cursor-pointer relative hover:text-text-primary ${location.pathname === '/' ? 'text-text-primary' : ''}`}>
+          <Button 
+            to="/" 
+            className="text-base text-text-secondary hover:text-text-primary transition-colors duration-300"
+          >
             Home
-          </Link>
+          </Button>
           
           <div 
             className="relative h-full flex items-center"
             onMouseEnter={() => setIsOpen(true)}
             onMouseLeave={() => setIsOpen(false)}
           >
-            <span className={`text-base text-text-secondary transition-colors duration-300 flex items-center gap-1.5 cursor-pointer relative hover:text-text-primary ${location.pathname.includes('/services') ? 'text-text-primary' : ''}`}>
-              Services <ChevronDown size={16} />
-            </span>
+            <motion.span 
+              className={`text-base text-text-secondary transition-colors duration-300 flex items-center gap-1.5 cursor-pointer relative hover:text-text-primary overflow-hidden ${location.pathname.includes('/services') ? 'text-text-primary' : ''}`}
+              onMouseEnter={() => setIsServicesHovered(true)}
+              onMouseLeave={() => setIsServicesHovered(false)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.span
+                className="flex items-center gap-1.5"
+                animate={{
+                  y: isServicesHovered ? -40 : 0,
+                  opacity: isServicesHovered ? 0 : 1
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                Services <ChevronDown size={16} />
+              </motion.span>
+              <motion.span
+                className="absolute inset-0 flex items-center gap-1.5"
+                animate={{
+                  y: isServicesHovered ? 0 : 40,
+                  opacity: isServicesHovered ? 1 : 0
+                }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+              >
+                Services <ChevronDown size={16} />
+              </motion.span>
+            </motion.span>
             
             <AnimatePresence>
               {isOpen && (
@@ -71,9 +115,12 @@ const Navbar = () => {
             </AnimatePresence>
           </div>
 
-          <Link to="/contact" className={`text-base text-text-secondary transition-colors duration-300 flex items-center gap-1.5 cursor-pointer relative hover:text-text-primary ${location.pathname === '/contact' ? 'text-text-primary' : ''}`}>
+          <Button 
+            to="/contact" 
+            className="text-base text-text-secondary hover:text-text-primary transition-colors duration-300"
+          >
             Contact Us
-          </Link>
+          </Button>
         </div>
 
         <div className="md:hidden cursor-pointer text-text-primary" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>

@@ -156,9 +156,9 @@ const ServicePage = () => {
          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             {/* Sticky Title */}
             <div className="lg:col-span-4">
-               <div className="sticky top-32">
+               <div>
                   <h2 className="text-4xl font-bold mb-6">The Approach</h2>
-                  <div className="w-20 h-2 bg-[var(--service-color)]" style={{ '--service-color': service.color }}></div>
+                  <div className="w-20 h-2 bg-black"></div>
                </div>
             </div>
             
@@ -195,6 +195,7 @@ const ServicePage = () => {
                            style={{ '--service-color': service.color }}
                            initial={{ opacity: 0, y: 20 }}
                            whileInView={{ opacity: 1, y: 0 }}
+                           whileHover={{ y: -10, transition: { duration: 0.3, ease: "easeOut" } }}
                            viewport={{ once: true }}
                            transition={{ delay: i * 0.1 }}
                         >
@@ -204,50 +205,34 @@ const ServicePage = () => {
                                  <img 
                                     src={image} 
                                     alt={title} 
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    className="w-full h-full object-cover"
                                  />
                                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
                               </div>
                            )}
 
                            {/* Content Overlay */}
-                           <div className="relative z-10 p-8 transform transition-transform duration-500 group-hover:-translate-y-2">
-                              <div className="w-12 h-12 rounded-none bg-white/10 backdrop-blur-md flex items-center justify-center text-white mb-4 border border-white/20 group-hover:bg-[var(--service-color)] group-hover:border-[var(--service-color)] transition-colors duration-300">
-                                 <Icon size={24} />
-                              </div>
-                              
+                           <div className="relative z-10 p-8 transform transition-all duration-300 ease-out group-hover:-translate-y-2">
                               <h3 className="text-2xl font-bold text-white mb-2 leading-tight">
                                  {title}
                               </h3>
                               
-                              <div className="h-0 overflow-hidden group-hover:h-auto transition-all duration-500">
-                                 <p className="text-gray-300 text-sm font-medium mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                              <div className="max-h-0 overflow-hidden group-hover:max-h-32 transition-all duration-300 ease-out">
+                                 <p className="text-gray-300 text-sm font-medium mt-2 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out">
                                     {desc}
                                  </p>
                               </div>
                            </div>
 
                            {/* Hover Border */}
-                           <div className="absolute inset-0 border-2 border-transparent group-hover:border-[var(--service-color)] rounded-none transition-colors duration-500 pointer-events-none z-20"></div>
+                           <div className="absolute inset-0 border-2 border-transparent group-hover:border-[var(--service-color)] rounded-none transition-colors duration-300 ease-out pointer-events-none z-20"></div>
                         </motion.div>
                      );
                   })}
                </div>
-
-               {/* Stats Row */}
-               {service.stats && (
-                  <div className="bg-black text-white p-12 rounded-none grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                     {service.stats.map((stat, i) => (
-                        <div key={i} className="text-center">
-                           <div className="text-4xl font-bold text-[var(--service-color)] mb-2" style={{ '--service-color': service.color }}>{stat.value}</div>
-                           <div className="text-sm text-gray-400 uppercase tracking-wider">{stat.label}</div>
-                        </div>
-                     ))}
-                  </div>
-               )}
                
                <div className="mt-8">
-                  <Button to="/contact" className="inline-flex items-center gap-3 bg-black text-white px-10 py-5 rounded-none font-bold text-xl hover:bg-[var(--service-color)] hover:text-black transition-all duration-300" style={{ '--service-color': service.color }}>
+                  <Button to="/contact" className="inline-flex items-center gap-3 bg-black text-white px-10 py-5 rounded-none font-bold text-xl hover:bg-gray-900 transition-all duration-300">
                      Start Your Project
                      <ArrowRight className="group-hover:translate-x-1 transition-transform" />
                   </Button>
