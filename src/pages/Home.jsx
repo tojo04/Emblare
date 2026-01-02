@@ -3,6 +3,15 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Globe, BarChart, Video, Users, Target, Zap, Layers, Award, Smile } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+import apolloLogo from '../assets/client/apollo.jpg';
+import cloud360Logo from '../assets/client/cloud360.webp';
+import flipkartLogo from '../assets/client/flipkart.png';
+import indeedLogo from '../assets/client/indeed.png';
+import pushpLogo from '../assets/client/pushp-masala.jpeg';
+import mahiLogo from '../assets/client/saucy-mahi.png';
+import tommyLogo from '../assets/client/tommy.jpeg';
+import zomatoLogo from '../assets/client/zomato.png';
+
 const Home = () => {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -43,14 +52,14 @@ const Home = () => {
   ];
 
   const clients = [
-    'Apollo Hospitals', 
-    '360 Cloud', 
-    'Flipkart', 
-    'Indeed', 
-    'Pushp Brand Spices', 
-    'Mahi', 
-    'Zomato', 
-    'Tommy Hilfiger'
+    { name: 'Apollo Hospitals', logo: apolloLogo },
+    { name: '360 Cloud', logo: cloud360Logo },
+    { name: 'Flipkart', logo: flipkartLogo },
+    { name: 'Indeed', logo: indeedLogo },
+    { name: 'Pushp Brand Spices', logo: pushpLogo },
+    { name: 'Mahi', logo: mahiLogo },
+    { name: 'Zomato', logo: zomatoLogo },
+    { name: 'Tommy Hilfiger', logo: tommyLogo }
   ];
 
   return (
@@ -78,11 +87,14 @@ const Home = () => {
                <div className="relative w-full overflow-hidden" style={{ maskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 20%, black 80%, transparent)' }}>
                   <div className="flex whitespace-nowrap animate-marquee items-center">
                     {[...Array(4)].map((_, setIndex) => (
-                      <div key={setIndex} className="flex items-center gap-20 mx-10">
+                      <div key={setIndex} className="flex items-center gap-12 md:gap-24 mx-10 shrink-0">
                         {clients.map((client, i) => (
-                          <span key={i} className="text-2xl md:text-3xl font-bold text-gray-400 hover:text-gray-900 transition-colors cursor-default select-none">
-                            {client}
-                          </span>
+                          <img 
+                            key={i} 
+                            src={client.logo} 
+                            alt={client.name} 
+                            className="h-8 md:h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 shrink-0" 
+                          />
                         ))}
                       </div>
                     ))}
