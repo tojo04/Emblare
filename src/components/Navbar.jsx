@@ -34,11 +34,19 @@ const Navbar = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
+  const isDarkHeader = location.pathname === '/contact';
+  const textColorClass = (isDarkHeader && !scrolled) ? 'text-white' : 'text-text-secondary';
+  const hoverColorClass = (isDarkHeader && !scrolled) ? 'hover:text-gray-200' : 'hover:text-text-primary';
+  const logoClass = (isDarkHeader && !scrolled) ? 'brightness-0 invert' : '';
+  const mobileMenuIconClass = (isDarkHeader && !scrolled) ? 'text-white' : 'text-text-primary';
+
   return (
     <motion.nav 
       className={`fixed top-0 left-0 w-full h-[80px] z-50 transition-all duration-300 ${
         scrolled 
           ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-black/10' 
+          : isDarkHeader 
+          ? 'bg-black/40 backdrop-blur-md' 
           : 'bg-transparent'
       }`}
       initial="hidden"
@@ -47,13 +55,13 @@ const Navbar = () => {
     >
       <div className="container flex justify-between items-center h-full relative">
         <Link to="/" className="flex items-center">
-          <img src={logoIcon} alt="Emblare" className="h-10 w-auto" />
+          <img src={logoIcon} alt="Emblare" className={`h-10 w-auto ${logoClass} transition-all duration-300`} />
         </Link>
 
         <div className="hidden md:flex items-center gap-10 absolute left-1/2 -translate-x-1/2 h-full">
           <Button 
             to="/" 
-            className="text-base text-text-secondary hover:text-text-primary transition-colors duration-300"
+            className={`text-base ${textColorClass} ${hoverColorClass} transition-colors duration-300`}
           >
             Home
           </Button>
@@ -64,7 +72,7 @@ const Navbar = () => {
             onMouseLeave={() => setIsOpen(false)}
           >
             <motion.span 
-              className={`text-base text-text-secondary transition-colors duration-300 flex items-center gap-1.5 cursor-pointer relative hover:text-text-primary overflow-hidden ${location.pathname.includes('/services') ? 'text-text-primary' : ''}`}
+              className={`text-base ${textColorClass} transition-colors duration-300 flex items-center gap-1.5 cursor-pointer relative ${hoverColorClass} overflow-hidden ${location.pathname.includes('/services') ? 'text-text-primary' : ''}`}
               onMouseEnter={() => setIsServicesHovered(true)}
               onMouseLeave={() => setIsServicesHovered(false)}
               whileHover={{ scale: 1.05 }}
@@ -117,13 +125,13 @@ const Navbar = () => {
 
           <Button 
             to="/contact" 
-            className="text-base text-text-secondary hover:text-text-primary transition-colors duration-300"
+            className={`text-base ${textColorClass} ${hoverColorClass} transition-colors duration-300`}
           >
             Contact Us
           </Button>
         </div>
 
-        <div className="md:hidden cursor-pointer text-text-primary" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+        <div className={`md:hidden cursor-pointer ${mobileMenuIconClass}`} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <X /> : <Menu />}
         </div>
       </div>
