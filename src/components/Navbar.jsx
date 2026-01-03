@@ -86,7 +86,7 @@ const Navbar = () => {
                 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                Services <ChevronDown size={16} />
+                Services <ChevronDown size={16} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
               </motion.span>
               <motion.span
                 className="absolute inset-0 flex items-center gap-1.5"
@@ -96,7 +96,7 @@ const Navbar = () => {
                 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                Services <ChevronDown size={16} />
+                Services <ChevronDown size={16} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
               </motion.span>
             </motion.span>
             
@@ -104,16 +104,16 @@ const Navbar = () => {
               {isOpen && (
                 <motion.div 
                   className="absolute top-full left-1/2 -translate-x-1/2 bg-bg-secondary border border-white/10 rounded-none p-2.5 min-w-[240px] shadow-2xl overflow-hidden"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.2 }}
+                  initial={{ opacity: 0, height: 0, y: -10 }}
+                  animate={{ opacity: 1, height: 'auto', y: 0 }}
+                  exit={{ opacity: 0, height: 0, y: -10 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                 >
                   {services.map((service, index) => (
                     <Link 
                       key={index} 
                       to={service.path} 
-                      className="block px-4 py-3 text-text-secondary rounded-none transition-all duration-200 text-sm hover:bg-white/5 hover:text-text-primary"
+                      className="block px-4 py-3 text-text-secondary rounded-none transition-all duration-200 text-sm hover:bg-white/5 hover:text-text-primary hover:border-l-2 hover:border-accent-color hover:pl-[14px]"
                     >
                       {service.title}
                     </Link>
