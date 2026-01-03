@@ -17,7 +17,7 @@
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-reverse: float 8s ease-in-out infinite reverse;
-  --animate-marquee: marquee 25s linear infinite;
+  --animate-marquee: marquee 45s linear infinite;
 }
 
 @keyframes float {
