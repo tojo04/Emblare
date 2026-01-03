@@ -419,26 +419,6 @@ const Home = () => {
       </section>
 
       <Testimonials />
-
-      {/* CTA Section */}
-      <section className="section">
-        <div className="container">
-          <motion.div 
-            className="bg-bg-secondary border border-black/10 rounded-none p-10 md:p-20 text-center relative overflow-hidden"
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-5xl mb-4 relative z-10 font-bold">Have Any Project on Your Mind?</h2>
-            <p className="text-lg md:text-xl mb-10 opacity-90 relative z-10 max-w-2xl mx-auto">
-              Great! We’re excited to connect with you and bring your vision to life.
-            </p>
-            <Button to="/contact" className="btn btn-primary inline-block relative z-10">
-              LET'S TALK
-            </Button>
-          </motion.div>
-        </div>
-      </section>
     </div>
   );
 };

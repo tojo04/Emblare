@@ -20,7 +20,7 @@ const Marquee = () => {
           x: {
             repeat: Infinity,
             repeatType: 'loop',
-            duration: 20,
+            duration: 0.01,
             ease: 'linear',
           },
         }}
