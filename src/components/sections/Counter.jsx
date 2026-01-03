@@ -6,9 +6,9 @@ const Counter = () => {
   const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: true })
 
   const counters = [
-    { number: 12, suffix: '+', label: 'Years of Experience', description: 'We are a digital agency helping brands with strategy, design, marketing, and technology solutions globally.' },
-    { number: 150, suffix: '+', label: 'Successful Projects', description: 'We are a digital agency helping brands with strategy, design, marketing, and technology solutions globally.' },
-    { number: 100, suffix: '+', label: 'Satisfied Customers', description: 'We are a digital agency helping brands with strategy, design, marketing, and technology solutions globally.' },
+    { number: 5, suffix: '+', label: 'Years of Experience', description: 'We are a digital agency helping brands with strategy, design, marketing, and technology solutions globally.' },
+    { number: 40, suffix: '+', label: 'Successful Projects', description: 'We are a digital agency helping brands with strategy, design, marketing, and technology solutions globally.' },
+    { number: 40, suffix: '+', label: 'Satisfied Customers', description: 'We are a digital agency helping brands with strategy, design, marketing, and technology solutions globally.' },
   ]
 
   const CountUp = ({ end, suffix }) => {

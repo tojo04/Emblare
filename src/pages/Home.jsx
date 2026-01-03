@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { ArrowRight, Globe, BarChart, Video, Users, Target, Zap, Layers, Award, Smile } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
@@ -20,6 +20,51 @@ import iconWeb from '../assets/icons/feature-icon1-4.svg';
 import iconEdit from '../assets/icons/feature-icon1-5.svg';
 
 import Testimonials from '../components/sections/Testimonials';
+
+// Counter component for animated numbers
+const Counter = ({ value, label }) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  // Extract the number and suffix (like '+')
+  const numericValue = parseInt(value.replace(/[^0-9]/g, ''));
+  const suffix = value.replace(/[0-9]/g, '');
+  
+  useEffect(() => {
+    if (isInView) {
+      let start = 0;
+      const duration = 2000; // 2 seconds
+      const increment = numericValue / (duration / 16); // 60fps
+      
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= numericValue) {
+          setCount(numericValue);
+          clearInterval(timer);
+        } else {
+          setCount(Math.floor(start));
+        }
+      }, 16);
+      
+      return () => clearInterval(timer);
+    }
+  }, [isInView, numericValue]);
+  
+  return (
+    <div ref={ref} className="text-center">
+      <motion.div 
+        className="text-5xl md:text-6xl font-black text-gray-900 mb-2"
+        initial={{ scale: 0.5, opacity: 0 }}
+        animate={isInView ? { scale: 1, opacity: 1 } : {}}
+        transition={{ duration: 0.5 }}
+      >
+        {count}{suffix}
+      </motion.div>
+      <p className="text-text-secondary text-base font-medium">{label}</p>
+    </div>
+  );
+};
 
 const Home = () => {
   const containerVariants = {
@@ -46,9 +91,9 @@ const Home = () => {
   ];
 
   const stats = [
-    { value: '12+', label: 'Years of Experience' },
-    { value: '150+', label: 'Successful Projects' },
-    { value: '100+', label: 'Satisfied Customers' },
+    { value: '5+', label: 'Years of Experience' },
+    { value: '40+', label: 'Successful Projects' },
+    { value: '40+', label: 'Satisfied Customers' },
   ];
 
   const whyUsFeatures = [
@@ -363,6 +408,26 @@ const Home = () => {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 bg-white border-y border-black/5">
+        <div className="container">
+          <div className="grid grid-cols-3 divide-x divide-black/10">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="px-4 md:px-8"
+              >
+                <Counter value={stat.value} label={stat.label} />
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

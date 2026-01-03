@@ -122,7 +122,7 @@ const ServicePage = () => {
           animate={{ opacity: 1, y: 0 }}
           className="max-w-5xl"
         >
-           <span className="text-[var(--service-color)] font-bold tracking-widest uppercase mb-6 block" style={{ '--service-color': service.color }}>Our Expertise</span>
+           <span className="text-accent-color font-bold tracking-widest uppercase mb-6 block">Our Expertise</span>
            <h1 className="text-6xl md:text-8xl lg:text-9xl font-black leading-[0.9] mb-8 tracking-tighter text-black">
               {service.title}
            </h1>

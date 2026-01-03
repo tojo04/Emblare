@@ -7,13 +7,13 @@
   --color-bg-secondary: #f3f4f6;
   --color-text-primary: #111827;
   --color-text-secondary: #4b5563;
-  --color-accent-color: #D4FF00;
+  --color-accent-color: #C5E600;
   
   --font-heading: 'Poppins', system-ui, -apple-system, sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
   --font-button: 'Inter', system-ui, -apple-system, sans-serif;
   
-  --background-image-accent-gradient: linear-gradient(135deg, #D4FF00 0%, #b7dd00 100%);
+  --background-image-accent-gradient: linear-gradient(135deg, #C5E600 0%, #a8cc00 100%);
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-reverse: float 8s ease-in-out infinite reverse;
