@@ -198,33 +198,10 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
                   <Button to="/contact" className="bg-accent-color text-black px-10 py-5 font-bold text-lg hover:bg-white transition-all duration-300">
                     Start Project
                   </Button>
-                  <div className="flex items-center gap-3 text-white/60">
-                    <Play size={20} className="text-accent-color" />
-                    <span className="text-sm tracking-wide">Watch Showreel</span>
-                  </div>
                 </motion.div>
               </motion.div>
               
-              {/* Floating Stats */}
-              <motion.div 
-                className="hidden lg:flex flex-col items-end gap-8 pr-12"
-                initial={{ opacity: 0, x: 80 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.5 }}
-              >
-                {service.stats?.map((stat, i) => (
-                  <motion.div 
-                    key={i}
-                    className="text-right"
-                    initial={{ opacity: 0, x: 40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.8 + i * 0.2 }}
-                  >
-                    <div className="text-5xl md:text-6xl font-black text-white mb-1">{stat.value}</div>
-                    <div className="text-gray-400 text-sm tracking-widest uppercase">{stat.label}</div>
-                  </motion.div>
-                ))}
-              </motion.div>
+              {/* Floating Stats Removed */}
             </div>
           </div>
         </div>
@@ -354,7 +331,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
               <div className="absolute bottom-0 left-0 right-0 p-10">
                 <span className="text-accent-color text-sm tracking-[0.2em] uppercase mb-3 block">Featured</span>
                 <h3 className="text-3xl md:text-4xl font-bold text-white mb-3">{service.features[1]?.title}</h3>
-                <p className="text-gray-300 text-lg max-w-xl">{service.features[1]?.desc}</p>
+                <p className="text-gray-300 text-lg max-w-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">{service.features[1]?.desc}</p>
               </div>
             </motion.div>
             
