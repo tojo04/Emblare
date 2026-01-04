@@ -250,17 +250,18 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
           {/* Image Side */}
           <motion.div 
             className="relative h-[50vh] lg:h-auto overflow-hidden"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ clipPath: "inset(0 100% 0 0)" }}
+            whileInView={{ clipPath: "inset(0 0 0 0)" }}
             viewport={{ once: true }}
+            transition={{ duration: 1, ease: "easeInOut" }}
           >
             <motion.img 
               src={service.features[0]?.image} 
               alt="Design Process"
               className="w-full h-full object-cover"
-              initial={{ scale: 1.2 }}
+              initial={{ scale: 1.4 }}
               whileInView={{ scale: 1 }}
-              transition={{ duration: 1.5 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
               viewport={{ once: true }}
             />
             <div className="absolute inset-0 bg-black/20"></div>
@@ -269,6 +270,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
             >
               <span className="text-accent-color text-sm tracking-[0.2em] uppercase">01</span>
               <h3 className="text-3xl font-bold text-white mt-2">{service.features[0]?.title}</h3>
@@ -278,23 +280,42 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
           {/* Text Side */}
           <div className="flex items-center bg-[#fafafa] p-12 lg:p-24">
             <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
             >
-              <div className="w-16 h-[2px] bg-accent-color mb-8"></div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-8 text-gray-900">
+              <motion.div 
+                className="w-16 h-[2px] bg-accent-color mb-8"
+                initial={{ width: 0 }}
+                whileInView={{ width: 64 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              />
+              <motion.h2 
+                className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] mb-8 text-gray-900"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
                 Crafting Digital<br />
                 <span className="text-accent-color">Experiences</span>
-              </h2>
-              <p className="text-xl text-gray-600 leading-relaxed mb-8 max-w-lg">
+              </motion.h2>
+              <motion.p 
+                className="text-xl text-gray-600 leading-relaxed mb-8 max-w-lg"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
                 {service.description}
-              </p>
+              </motion.p>
               {service.longDescription && (
-                <p className="text-lg text-gray-500 leading-relaxed max-w-lg">
+                <motion.p 
+                  className="text-lg text-gray-500 leading-relaxed max-w-lg"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                >
                   {service.longDescription}
-                </p>
+                </motion.p>
               )}
             </motion.div>
           </div>
@@ -365,86 +386,42 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
         </div>
       </section>
 
-      {/* Split Sections with Alternating Layout */}
-      {service.sections && (
-        <section className="py-0">
-          {service.sections.map((section, index) => (
-            <div 
-              key={index} 
-              className={`grid grid-cols-1 lg:grid-cols-2 min-h-[70vh] ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}
-            >
-              {/* Number & Title Side */}
-              <motion.div 
-                className={`flex items-center p-12 lg:p-24 ${index % 2 === 0 ? 'bg-white' : 'bg-[#f5f5f5]'} ${index % 2 === 1 ? 'lg:order-2' : ''}`}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -60 : 60 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <div>
-                  <span className="text-[120px] md:text-[180px] font-black text-gray-100 leading-none block -mb-8">
-                    0{index + 1}
-                  </span>
-                  <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{section.title}</h3>
-                  <p className="text-gray-600 text-lg leading-relaxed max-w-md">{section.content}</p>
-                </div>
-              </motion.div>
-              
-              {/* Visual Side */}
-              <motion.div 
-                className={`relative h-[40vh] lg:h-auto overflow-hidden ${index % 2 === 1 ? 'lg:order-1' : ''}`}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-              >
-                <div className={`w-full h-full ${index === 0 ? 'bg-accent-color' : 'bg-[#1a1a1a]'} flex items-center justify-center`}>
-                  <motion.div
-                    className="text-center p-12"
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    {index === 0 ? (
-                      <>
-                        <Monitor size={80} className="mx-auto mb-6 text-black" strokeWidth={1} />
-                        <div className="text-black text-xl font-bold tracking-widest uppercase">Pixel Perfect</div>
-                      </>
-                    ) : (
-                      <>
-                        <Users size={80} className="mx-auto mb-6 text-accent-color" strokeWidth={1} />
-                        <div className="text-white text-xl font-bold tracking-widest uppercase">User First</div>
-                      </>
-                    )}
-                  </motion.div>
-                </div>
-              </motion.div>
-            </div>
-          ))}
-        </section>
-      )}
+
 
       {/* Quote / Additional Content Section */}
       {service.additionalContent && (
         <section className="py-32 bg-white relative overflow-hidden">
-          <div className="absolute top-0 left-0 text-[400px] font-black text-gray-50 leading-none select-none pointer-events-none">
+          <motion.div 
+            className="absolute top-0 left-0 text-[400px] font-black text-gray-50 leading-none select-none pointer-events-none"
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 1 }}
+          >
             "
-          </div>
+          </motion.div>
           <div className="container relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="max-w-5xl mx-auto"
-            >
+            <div className="max-w-5xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
                 <div className="lg:col-span-4">
                   <div className="sticky top-32">
-                    <span className="text-accent-color text-sm tracking-[0.3em] uppercase mb-4 block">Our Story</span>
-                    <h2 className="text-4xl md:text-5xl font-bold leading-tight">
-                      50 Years of<br />
-                      <span className="text-accent-color">Excellence</span>
-                    </h2>
+                    <motion.span 
+                      className="text-accent-color text-sm tracking-[0.3em] uppercase mb-4 block"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                    >
+                      The Evolution
+                    </motion.span>
+                    <motion.h2 
+                      className="text-4xl md:text-5xl font-bold leading-tight"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 }}
+                    >
+                      Decades of<br />
+                      <span className="text-accent-color">Progress</span>
+                    </motion.h2>
                   </div>
                 </div>
                 <div className="lg:col-span-8">
@@ -452,17 +429,17 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
                     <motion.p 
                       key={index} 
                       className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-10 last:mb-0"
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.2 }}
+                      initial={{ opacity: 0, x: 50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
                     >
                       {paragraph}
                     </motion.p>
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
       )}
