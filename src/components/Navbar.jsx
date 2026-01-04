@@ -34,7 +34,7 @@ const Navbar = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
-  const isDarkHeader = location.pathname === '/contact' || location.pathname === '/services/web-design';
+  const isDarkHeader = location.pathname === '/contact' || location.pathname === '/services/web-design' || location.pathname === '/services/editing-producing' || location.pathname === '/services/seo' || location.pathname === '/services/social-media-marketing' || location.pathname === '/services/online-ads';
   const textColorClass = (isDarkHeader && !scrolled) ? 'text-white' : 'text-text-secondary';
   const hoverColorClass = (isDarkHeader && !scrolled) ? 'hover:text-gray-200' : 'hover:text-text-primary';
   const logoClass = (isDarkHeader && !scrolled) ? 'brightness-0 invert' : '';

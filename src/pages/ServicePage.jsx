@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Button from '../components/Button';
@@ -16,7 +16,10 @@ const servicesData = {
   'social-media-marketing': {
     title: 'Social Media Marketing',
     subtitle: 'We don\'t just post. We ignite conversations.',
-    description: 'In a world of infinite scroll, stopping the thumb is an art form. Emblare is proud to lead the way in crafting social narratives that resonate with audiences. We help brands evolve their digital voice, and will be responsible for creating brand campaigns, content strategies, and all future visual assets.',
+    description: 'Emblare is proud to lead the way in crafting social narratives that resonate with audiences. We help brands evolve their digital voice, and will be responsible for creating brand campaigns, content strategies, and all future visual assets.',
+    longDescription: 'In a world of infinite scroll, stopping the thumb is an art form. We create content that captures attention and drives meaningful engagement with your target audience.',
+    video: '/videos/Social media marketing.mp4',
+    additionalContent: 'Our social media refreshment will help position brands to meet the challenges of the future, as it seeks to lead the industry in technological innovation and ethical brand practices to deliver long-lasting value for its clients.',
     features: [
       { title: 'Viral Content Strategy', image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop', desc: 'Data-backed content calendars designed to trigger algorithms and engagement.' },
       { title: 'Community Management', image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000&auto=format&fit=crop', desc: 'Building loyal tribes around your brand through active, authentic listening.' },
@@ -34,7 +37,10 @@ const servicesData = {
   'online-ads': {
     title: 'Online Ads',
     subtitle: 'Stop spending. Start investing in growth.',
-    description: 'We don\'t just run ads; we engineer revenue engines. By combining laser-focused targeting with high-converting creative, we ensure every dollar you spend brings back more. From Google Search to Instagram Reels, we put your brand in front of the people who are already looking for you.',
+    description: 'We create and manage targeted campaigns that maximize your brand\'s reach and deliver a strong return on investment. We focus on creating impact that helps your brand scale effectively.',
+    longDescription: 'Emblare is proud to lead the way in crafting ad campaigns that resonate with audiences. We will help brands evolve their paid strategy, and will be responsible for creating brand campaigns, content strategies, and all future visual assets.',
+    video: '/videos/Online ads.mp4',
+    additionalContent: 'Our online ad campaigns will help position brands to meet the challenges of the future, as it seeks to lead the industry in technological innovation and sustainable advertising practices to deliver long-lasting value for its clients.',
     features: [
       { title: 'Precision Targeting', image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop', desc: 'Reaching the exact demographics that matter to your bottom line.' },
       { title: 'High-Converting Copy', image: 'https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=1000&auto=format&fit=crop', desc: 'Words that persuade, compel, and drive immediate action.' },
@@ -52,7 +58,10 @@ const servicesData = {
   'seo': {
     title: 'SEO',
     subtitle: 'Dominate search. Own your market.',
-    description: 'Being on page 2 is like being invisible. We build robust, long-term SEO strategies that push your brand to the top of the results that matter. Through technical excellence, content authority, and strategic backlinks, we turn search engines into your most reliable source of leads.',
+    description: 'We design robust SEO strategies that enhance your online visibility and secure your brand\'s presence at the forefront. We love driving growth and helping you stand out in a competitive market.',
+    longDescription: 'Emblare is proud to lead the way in crafting search strategies that resonate with audiences. We will help brands evolve their search presence, and will be responsible for creating content strategies, technical SEO, and all future digital assets.',
+    video: '/videos/SEO.mp4',
+    additionalContent: 'Our SEO strategies will help position brands to meet the challenges of the future, as it seeks to lead the industry in technological innovation and sustainable digital practices to deliver long-lasting value for its clients.',
     features: [
       { title: 'Technical Audit', image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=1000&auto=format&fit=crop', desc: 'Fixing the hidden errors that are holding your rankings back.' },
       { title: 'Keyword Strategy', image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=1000&auto=format&fit=crop', desc: 'Targeting the high-intent terms your customers are actually searching for.' },
@@ -101,12 +110,17 @@ const servicesData = {
   'editing-producing': {
     title: 'Editing & Production',
     subtitle: 'Stories that move. Visuals that inspire.',
-    description: 'In the age of video, quality is the differentiator. We produce high-end visual and audio content that captures the essence of your brand. From cinematic commercials to snappy social clips, we handle the entire production pipeline to deliver assets that look like a million bucks.',
+    description: 'We produce high-quality visual and audio content that brings your brand’s unique story to life. We specialize in creating compelling assets that inspire and connect with your audience.',
+
+
+    longDescription: 'Emblare is proud to lead the way in crafting video productions that resonate with audiences. We will help brands evolve their visual identity, and will be responsible for creating brand stories, content strategies, and all future visual assets.',
+    video: '/videos/Editing.mp4?v=2',
+    additionalContent: 'Our editing and production will help position brands to meet the challenges of the future, as it seeks to lead the industry in technological innovation and sustainable production practices to deliver long-lasting value for its clients.',
     features: [
       { title: 'Cinematic Storytelling', image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1000&auto=format&fit=crop', desc: 'Narratives that connect emotionally and drive brand affinity.' },
       { title: 'Motion Graphics', image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000&auto=format&fit=crop', desc: 'Dynamic visuals that explain complex ideas simply.' },
       { title: 'Sound Design', image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=1000&auto=format&fit=crop', desc: 'Immersive audio that sets the perfect mood.' },
-      { title: 'Color Grading', image: 'https://images.unsplash.com/photo-1535016120720-40c6874c3b1c?q=80&w=1000&auto=format&fit=crop', desc: 'Professional polish that gives your footage a premium look.' }
+      { title: 'Color Grading', image: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1000&auto=format&fit=crop', desc: 'Professional polish that gives your footage a premium look.' }
     ],
     color: '#F48024',
     image: editingProducingImg,
@@ -125,8 +139,15 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
   const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
+  // Slow down video playback
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.8;
+    }
+  }, [service.video]);
+
   return (
-    <div className="min-h-screen bg-white" ref={containerRef}>
+    <div className="min-h-screen bg-white" ref={containerRef} key={serviceId}>
       {/* Hero Section - Split Layout with Video */}
       <div className="min-h-screen relative overflow-hidden">
         {/* Background Video */}
@@ -136,8 +157,10 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
             style={{ y }}
           >
             <video
+              key={service.video}
               ref={videoRef}
-              className="w-full h-full object-cover scale-110"
+              className="w-full h-full object-cover"
+              style={{ transform: 'scale(1.15) translateX(5%)' }}
               autoPlay
               muted
               loop
@@ -387,7 +410,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                     >
-                      The Evolution
+                      Our Vision
                     </motion.span>
                     <motion.h2 
                       className="text-4xl md:text-5xl font-bold leading-tight"
@@ -396,8 +419,8 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
                       viewport={{ once: true }}
                       transition={{ delay: 0.2 }}
                     >
-                      Decades of<br />
-                      <span className="text-accent-color">Progress</span>
+                      Built for<br />
+                      <span className="text-accent-color">Tomorrow</span>
                     </motion.h2>
                   </div>
                 </div>
