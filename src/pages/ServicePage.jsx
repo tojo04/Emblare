@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Button from '../components/Button';
@@ -136,6 +136,7 @@ const servicesData = {
 const EnhancedServiceLayout = ({ service, serviceId }) => {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const { scrollYProgress } = useScroll({ 
     target: containerRef, 
     offset: ["start start", "end start"],
@@ -149,7 +150,20 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
       videoRef.current.playbackRate = 0.8;
       // Reset video on component mount
       videoRef.current.load();
+      
+      // Handle video loaded state
+      const handleCanPlay = () => setVideoLoaded(true);
+      videoRef.current.addEventListener('canplaythrough', handleCanPlay);
+      
+      return () => {
+        if (videoRef.current) {
+          videoRef.current.removeEventListener('canplaythrough', handleCanPlay);
+        }
+      };
     }
+    
+    // Reset loaded state when service changes
+    setVideoLoaded(false);
     
     // Cleanup function to reset transforms
     return () => {
@@ -172,14 +186,26 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
             className="absolute inset-0 z-0 overflow-hidden"
             style={{ y }}
           >
+            {/* Loading placeholder */}
+            <div 
+              className={`absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black transition-opacity duration-700 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}
+            >
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="w-12 h-12 border-2 border-accent-color border-t-transparent rounded-full animate-spin"></div>
+                  <span className="text-white/60 text-sm tracking-widest uppercase">Loading</span>
+                </div>
+              </div>
+            </div>
             <video
               key={service.video}
               ref={videoRef}
-              className="w-full h-full object-cover"
+              className={`w-full h-full object-cover transition-opacity duration-700 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
               autoPlay
               muted
               loop
               playsInline
+              preload="auto"
             >
               <source src={service.video} type="video/mp4" />
             </video>
