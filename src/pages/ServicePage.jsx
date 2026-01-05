@@ -265,19 +265,17 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
           {/* Image Side */}
           <motion.div 
             className="relative h-[50vh] lg:h-auto overflow-hidden"
-            initial={{ clipPath: "inset(0 100% 0 0)" }}
-            whileInView={{ clipPath: "inset(0 0 0 0)" }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 1, ease: "easeInOut" }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
           >
             <motion.img 
               src={service.features[0]?.image} 
               alt="Design Process"
               className="w-full h-full object-cover"
-              initial={{ scale: 1.4 }}
-              whileInView={{ scale: 1 }}
+              initial={{ scale: 1.2 }}
+              animate={{ scale: 1 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
-              viewport={{ once: true, amount: 0.3 }}
             />
             <div className="absolute inset-0 bg-black/20"></div>
             <motion.div 
@@ -297,7 +295,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
+              viewport={{ once: true, amount: 0.1 }}
             >
               <motion.div 
                 className="w-16 h-[2px] bg-accent-color mb-8"
@@ -344,7 +342,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
             className="mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1 }}
           >
             <span className="text-accent-color text-sm tracking-[0.3em] uppercase mb-4 block">What We Deliver</span>
             <h2 className="text-4xl md:text-6xl font-bold text-white">
@@ -358,7 +356,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
               className="md:col-span-2 lg:col-span-2 relative h-[500px] overflow-hidden group"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.1 }}
             >
               <img 
                 src={service.features[1]?.image} 
@@ -381,7 +379,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
                   className="relative h-[242px] overflow-hidden group"
                   initial={{ opacity: 0, x: 40 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.1 }}
                   transition={{ delay: i * 0.1 }}
                 >
                   <img 
@@ -476,7 +474,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.1 }}
             className="text-center max-w-4xl mx-auto"
           >
             <span className="text-accent-color text-sm tracking-[0.3em] uppercase mb-6 block">Ready?</span>
@@ -530,7 +528,7 @@ const DefaultServiceLayout = ({ service, serviceId }) => {
           className="absolute inset-0 w-full h-full"
           initial={{ scale: 1.2 }}
           whileInView={{ scale: 1 }}
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
           transition={{ duration: 1.5 }}
         >
           {service.image ? (
@@ -587,7 +585,7 @@ const DefaultServiceLayout = ({ service, serviceId }) => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     whileHover={{ y: -10, transition: { duration: 0.3, ease: "easeOut" } }}
-                    viewport={{ once: true, amount: 0.3 }}
+                    viewport={{ once: true, amount: 0.1 }}
                     transition={{ delay: i * 0.1 }}
                   >
                     {image && (
