@@ -131,6 +131,16 @@ const Navbar = () => {
           </Button>
         </div>
 
+        {/* Book Appointment Button */}
+        <div className="hidden md:block">
+          <Button 
+            to="/contact" 
+            className="bg-accent-color text-black px-6 py-3 font-semibold rounded-none hover:bg-white transition-all duration-300"
+          >
+            Book Appointment
+          </Button>
+        </div>
+
         <div className={`md:hidden cursor-pointer ${mobileMenuIconClass}`} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <X /> : <Menu />}
         </div>
@@ -160,6 +170,15 @@ const Navbar = () => {
               ))}
             </div>
             <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="block py-4 text-text-secondary border-b border-white/5">Contact Us</Link>
+            <div className="mt-4">
+              <Button 
+                to="/contact" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full bg-accent-color text-black px-6 py-3 font-semibold rounded-none hover:bg-white transition-all duration-300 text-center"
+              >
+                Book Appointment
+              </Button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
