@@ -246,16 +246,20 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
         
         {/* Scroll Indicator */}
         <motion.div 
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 0.6 }}
+          style={{ opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]) }}
         >
-          <motion.div 
-            className="w-[1px] h-20 bg-gradient-to-b from-accent-color to-transparent"
-            animate={{ scaleY: [1, 0.5, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
+          <span className="text-white/60 text-xs tracking-[0.2em] uppercase font-medium">Scroll</span>
+          <div className="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center pt-2">
+            <motion.div 
+              className="w-1.5 h-1.5 bg-accent-color rounded-full"
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </div>
         </motion.div>
       </div>
 
