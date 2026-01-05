@@ -178,6 +178,16 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
 
   return (
     <div className="min-h-screen bg-white" ref={containerRef} key={serviceId}>
+      {/* Full Page Loader */}
+      {!videoLoaded && (
+        <div className="fixed inset-0 z-[100] bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-16 h-16 border-4 border-accent-color border-t-transparent rounded-full animate-spin"></div>
+            <span className="text-white/80 text-base tracking-[0.3em] uppercase font-semibold">Loading Experience</span>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section - Split Layout with Video */}
       <div className="min-h-screen relative overflow-hidden">
         {/* Background Video */}
@@ -186,17 +196,6 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
             className="absolute inset-0 z-0 overflow-hidden"
             style={{ y }}
           >
-            {/* Loading placeholder */}
-            <div 
-              className={`absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black transition-opacity duration-700 ${videoLoaded ? 'opacity-0' : 'opacity-100'}`}
-            >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="flex flex-col items-center gap-4">
-                  <div className="w-12 h-12 border-2 border-accent-color border-t-transparent rounded-full animate-spin"></div>
-                  <span className="text-white/60 text-sm tracking-widest uppercase">Loading</span>
-                </div>
-              </div>
-            </div>
             <video
               key={service.video}
               ref={videoRef}
@@ -219,14 +218,14 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <motion.div 
                 initial={{ opacity: 0, x: -80 }}
-                animate={{ opacity: 1, x: 0 }}
+                animate={videoLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: -80 }}
                 transition={{ duration: 1, ease: "easeOut" }}
                 className="pt-[120px] pb-[60px] lg:py-0"
               >
                 <motion.span 
                   className="text-accent-color font-bold tracking-[0.3em] uppercase text-sm mb-8 block"
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  animate={videoLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ delay: 0.3 }}
                 >
                   Our Expertise
@@ -237,7 +236,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
                       key={i} 
                       className="inline-block mr-4"
                       initial={{ opacity: 0, y: 60 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      animate={videoLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
                       transition={{ delay: 0.4 + i * 0.1, duration: 0.8 }}
                     >
                       {word}
@@ -247,7 +246,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
                 <motion.p 
                   className="text-xl md:text-2xl text-gray-300 max-w-xl leading-relaxed"
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  animate={videoLoaded ? { opacity: 1 } : { opacity: 0 }}
                   transition={{ delay: 0.8 }}
                 >
                   {service.subtitle}
@@ -256,7 +255,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
                 <motion.div 
                   className="mt-12 flex items-center gap-6"
                   initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  animate={videoLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                   transition={{ delay: 1 }}
                 >
                   <Button to="/contact" className="bg-accent-color text-black px-10 py-5 font-bold text-lg hover:bg-white transition-all duration-300">
@@ -274,7 +273,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
         <motion.div 
           className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={videoLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ delay: 1.5, duration: 0.6 }}
           style={{ opacity: useTransform(scrollYProgress, [0, 0.1], [1, 0]) }}
         >
