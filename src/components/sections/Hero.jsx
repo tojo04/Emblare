@@ -58,6 +58,29 @@ const Hero = () => {
     },
   }
 
+  const titleVariants = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delay: 0.2,
+        staggerChildren: 0.3,
+      },
+    },
+  }
+
+  const wordVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      },
+    },
+  }
+
   return (
     <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-white via-gray-50 to-white">
       {/* Animated Background Elements */}
@@ -91,12 +114,7 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
-        >
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Images */}
           <div className="relative h-[500px] lg:h-[600px]">
             <motion.div
@@ -128,24 +146,79 @@ const Hero = () => {
           </div>
 
           {/* Content */}
-          <motion.div variants={itemVariants} className="space-y-8">
-            <motion.h1
-              className="text-6xl lg:text-8xl font-bold leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <span className="block">We have</span>
-              <span className="block text-theme">Rare Ideas</span>
-              <span className="block">&</span>
-              <span className="block">Real Results</span>
-            </motion.h1>
+          <div className="space-y-8">
+            <h1 className="text-6xl lg:text-8xl font-bold leading-tight">
+              <span className="block">
+                <motion.span 
+                  className="inline-block"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  We
+                </motion.span>{' '}
+                <motion.span 
+                  className="inline-block"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                >
+                  have
+                </motion.span>
+              </span>
+              <span className="block text-theme">
+                <motion.span 
+                  className="inline-block"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.8 }}
+                >
+                  Rare
+                </motion.span>{' '}
+                <motion.span 
+                  className="inline-block"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 1.1 }}
+                >
+                  Ideas
+                </motion.span>
+              </span>
+              <span className="block">
+                <motion.span 
+                  className="inline-block"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 1.4 }}
+                >
+                  &
+                </motion.span>
+              </span>
+              <span className="block">
+                <motion.span 
+                  className="inline-block"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 1.7 }}
+                >
+                  Real
+                </motion.span>{' '}
+                <motion.span 
+                  className="inline-block"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 2.0 }}
+                >
+                  Results
+                </motion.span>
+              </span>
+            </h1>
 
             <motion.p
               className="text-xl text-body max-w-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 2.3 }}
             >
               At Emblare, we design engaging journeys that transform businesses into brands
             </motion.p>
@@ -153,7 +226,7 @@ const Hero = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              transition={{ duration: 0.8, delay: 2.5 }}
             >
               <Button
                 to="/contact"
@@ -162,8 +235,8 @@ const Hero = () => {
                 Let's Create Something Rare
               </Button>
             </motion.div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
       {/* Scroll Indicator */}

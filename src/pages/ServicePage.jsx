@@ -136,15 +136,31 @@ const servicesData = {
 const EnhancedServiceLayout = ({ service, serviceId }) => {
   const videoRef = useRef(null);
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const { scrollYProgress } = useScroll({ 
+    target: containerRef, 
+    offset: ["start start", "end start"],
+    layoutEffect: false
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
 
-  // Slow down video playback
+  // Slow down video playback and ensure proper cleanup
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playbackRate = 0.8;
+      // Reset video on component mount
+      videoRef.current.load();
     }
-  }, [service.video]);
+    
+    // Cleanup function to reset transforms
+    return () => {
+      if (containerRef.current) {
+        containerRef.current.style.transform = '';
+      }
+      if (videoRef.current) {
+        videoRef.current.pause();
+      }
+    };
+  }, [service.video, serviceId]);
 
   return (
     <div className="min-h-screen bg-white" ref={containerRef} key={serviceId}>
@@ -153,14 +169,13 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
         {/* Background Video */}
         {service.video && (
           <motion.div 
-            className="absolute inset-0 z-0"
+            className="absolute inset-0 z-0 overflow-hidden"
             style={{ y }}
           >
             <video
               key={service.video}
               ref={videoRef}
               className="w-full h-full object-cover"
-              style={{ transform: 'scale(1.15) translateX(5%)' }}
               autoPlay
               muted
               loop
@@ -252,7 +267,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
             className="relative h-[50vh] lg:h-auto overflow-hidden"
             initial={{ clipPath: "inset(0 100% 0 0)" }}
             whileInView={{ clipPath: "inset(0 0 0 0)" }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 1, ease: "easeInOut" }}
           >
             <motion.img 
@@ -262,7 +277,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
               initial={{ scale: 1.4 }}
               whileInView={{ scale: 1 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
             />
             <div className="absolute inset-0 bg-black/20"></div>
             <motion.div 
@@ -282,7 +297,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               <motion.div 
                 className="w-16 h-[2px] bg-accent-color mb-8"
@@ -329,7 +344,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
             className="mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3 }}
           >
             <span className="text-accent-color text-sm tracking-[0.3em] uppercase mb-4 block">What We Deliver</span>
             <h2 className="text-4xl md:text-6xl font-bold text-white">
@@ -343,7 +358,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
               className="md:col-span-2 lg:col-span-2 relative h-[500px] overflow-hidden group"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               <img 
                 src={service.features[1]?.image} 
@@ -366,7 +381,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
                   className="relative h-[242px] overflow-hidden group"
                   initial={{ opacity: 0, x: 40 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0.3 }}
                   transition={{ delay: i * 0.1 }}
                 >
                   <img 
@@ -395,6 +410,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
             className="absolute top-0 left-0 text-[400px] font-black text-gray-50 leading-none select-none pointer-events-none"
             initial={{ x: -100, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ duration: 1 }}
           >
             "
@@ -408,7 +424,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
                       className="text-accent-color text-sm tracking-[0.3em] uppercase mb-4 block"
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: true, amount: 0.5 }}
                     >
                       Our Vision
                     </motion.span>
@@ -416,7 +432,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
                       className="text-4xl md:text-5xl font-bold leading-tight"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
+                      viewport={{ once: true, amount: 0.5 }}
                       transition={{ delay: 0.2 }}
                     >
                       Built for<br />
@@ -460,7 +476,7 @@ const EnhancedServiceLayout = ({ service, serviceId }) => {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.3 }}
             className="text-center max-w-4xl mx-auto"
           >
             <span className="text-accent-color text-sm tracking-[0.3em] uppercase mb-6 block">Ready?</span>
@@ -514,6 +530,7 @@ const DefaultServiceLayout = ({ service, serviceId }) => {
           className="absolute inset-0 w-full h-full"
           initial={{ scale: 1.2 }}
           whileInView={{ scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 1.5 }}
         >
           {service.image ? (
@@ -570,7 +587,7 @@ const DefaultServiceLayout = ({ service, serviceId }) => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     whileHover={{ y: -10, transition: { duration: 0.3, ease: "easeOut" } }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, amount: 0.3 }}
                     transition={{ delay: i * 0.1 }}
                   >
                     {image && (
@@ -612,17 +629,22 @@ const ServicePage = () => {
   const { serviceId } = useParams();
   const service = servicesData[serviceId];
 
+  // Reset scroll position on service change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [serviceId]);
+
   if (!service) {
     return <div className="container py-[100px] text-center text-2xl font-bold">Service not found</div>;
   }
 
   // Use enhanced layout for services with video or extended content
   if (service.video || service.sections || service.longDescription) {
-    return <EnhancedServiceLayout service={service} serviceId={serviceId} />;
+    return <EnhancedServiceLayout key={serviceId} service={service} serviceId={serviceId} />;
   }
 
   // Use default layout for other services
-  return <DefaultServiceLayout service={service} serviceId={serviceId} />;
+  return <DefaultServiceLayout key={serviceId} service={service} serviceId={serviceId} />;
 };
 
 export default ServicePage;
