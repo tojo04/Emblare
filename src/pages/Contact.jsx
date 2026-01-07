@@ -85,7 +85,7 @@ const Contact = () => {
                 Great! We're excited to hear from you and let's start something
               </p>
 
-              <form action="https://formspree.io/f/xzdznrey" method="POST" className="space-y-5 md:space-y-6">
+              <form action="https://formspree.io/f/xbdlnold" method="POST" encType="multipart/form-data" className="space-y-5 md:space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                   <motion.div
                     className="relative"
@@ -129,25 +129,60 @@ const Contact = () => {
                   </motion.div>
                 </div>
 
-                <motion.div
-                  className="relative"
-                  animate={{ scale: focusedField === 'website' ? 1.02 : 1 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <input 
-                    type="url" 
-                    name="website"
-                    placeholder="Website link" 
-                    className="w-full px-0 py-3 md:py-4 bg-transparent border-b-2 border-black text-black text-lg md:text-xl font-semibold placeholder-black focus:outline-none transition-colors relative z-10"
-                    onFocus={() => setFocusedField('website')}
-                    onBlur={() => setFocusedField(null)}
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                   <motion.div
-                    className="absolute inset-0 bg-black pointer-events-none"
-                    initial={{ opacity: 0 }}
+                    className="relative"
+                    animate={{ scale: focusedField === 'phone' ? 1.02 : 1 }}
                     transition={{ duration: 0.2 }}
-                  />
-                </motion.div>
+                  >
+                    <input 
+                      type="tel" 
+                      name="phone"
+                      placeholder="Phone number*" 
+                      className="w-full px-0 py-3 md:py-4 bg-transparent border-b-2 border-black text-black text-lg md:text-xl font-semibold placeholder-black focus:outline-none transition-colors relative z-10"
+                      onFocus={() => setFocusedField('phone')}
+                      onBlur={() => setFocusedField(null)}
+                      required
+                    />
+                    <motion.div
+                      className="absolute inset-0 bg-black pointer-events-none"
+                      initial={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    />
+                  </motion.div>
+                  <motion.div
+                    className="relative"
+                    animate={{ scale: focusedField === 'budget' ? 1.02 : 1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <select 
+                      name="budget"
+                      className="w-full px-0 py-3 md:py-4 pr-8 bg-transparent border-b-2 border-black text-black text-lg md:text-xl font-semibold focus:outline-none transition-colors relative z-10 appearance-none cursor-pointer"
+                      style={{
+                        colorScheme: 'light'
+                      }}
+                      onFocus={() => setFocusedField('budget')}
+                      onBlur={() => setFocusedField(null)}
+                      required
+                      defaultValue=""
+                    >
+                      <option value="" disabled style={{ backgroundColor: '#fff', color: '#000', padding: '12px 16px' }}>Your Project Budget*</option>
+                      <option value="5Lac or Less" style={{ backgroundColor: '#fff', color: '#000', padding: '12px 16px' }}>5Lac or Less</option>
+                      <option value="5Lac to 10Lac" style={{ backgroundColor: '#fff', color: '#000', padding: '12px 16px' }}>5Lac to 10Lac</option>
+                      <option value="10Lac to 30Lac" style={{ backgroundColor: '#fff', color: '#000', padding: '12px 16px' }}>10Lac to 30Lac</option>
+                      <option value="30Lac or more" style={{ backgroundColor: '#fff', color: '#000', padding: '12px 16px' }}>30Lac or more</option>
+                      <option value="Not Sure" style={{ backgroundColor: '#fff', color: '#000', padding: '12px 16px' }}>Not Sure</option>
+                    </select>
+                    <svg className="absolute right-0 bottom-3 md:bottom-4 w-6 h-6 text-black pointer-events-none z-20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                    <motion.div
+                      className="absolute inset-0 bg-black pointer-events-none"
+                      initial={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    />
+                  </motion.div>
+                </div>
 
                 <motion.div
                   className="relative"
@@ -157,10 +192,11 @@ const Contact = () => {
                   <textarea 
                     rows="3" 
                     name="message"
-                    placeholder="How Can We Help You*" 
+                    placeholder="Share your requirements with us*" 
                     className="w-full px-0 py-3 md:py-4 bg-transparent border-b-2 border-black text-black text-lg md:text-xl font-semibold placeholder-black focus:outline-none transition-colors resize-none relative z-10"
                     onFocus={() => setFocusedField('message')}
                     onBlur={() => setFocusedField(null)}
+                    maxLength={800}
                     required
                   ></textarea>
                   <motion.div
@@ -169,6 +205,49 @@ const Contact = () => {
                     transition={{ duration: 0.2 }}
                   />
                 </motion.div>
+
+                <div className="relative overflow-hidden">
+                  <label 
+                    className="flex items-center justify-between w-full px-4 md:px-6 py-3 md:py-4 bg-black text-[#D4FF00] cursor-pointer relative transition-all group"
+                    onMouseEnter={() => setFocusedField('file')}
+                    onMouseLeave={() => setFocusedField(null)}
+                  >
+                    <motion.span
+                      className="flex items-center gap-2 text-base md:text-lg font-semibold"
+                      animate={{
+                        y: focusedField === 'file' ? -40 : 0,
+                        opacity: focusedField === 'file' ? 0 : 1
+                      }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      Upload files (optional)
+                      <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                      </svg>
+                    </motion.span>
+                    <motion.span
+                      className="absolute inset-0 flex items-center justify-between px-4 md:px-6 text-base md:text-lg font-semibold"
+                      animate={{
+                        y: focusedField === 'file' ? 0 : 40,
+                        opacity: focusedField === 'file' ? 1 : 0
+                      }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <span className="flex items-center gap-2">
+                        Upload files (optional)
+                        <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                        </svg>
+                      </span>
+                    </motion.span>
+                    <input 
+                      type="file" 
+                      name="file"
+                      className="hidden"
+                      accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+                    />
+                  </label>
+                </div>
 
                 <Button 
                   type="submit" 
